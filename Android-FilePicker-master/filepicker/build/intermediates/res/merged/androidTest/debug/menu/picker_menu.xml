@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/action_done"
-        android:title="@string/done"
+        android:title="Add"
         android:orderInCategory="100"
         app:showAsAction="always" />
 </menu>
