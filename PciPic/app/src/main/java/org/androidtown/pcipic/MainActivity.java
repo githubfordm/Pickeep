@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void showPopup(final Activity context){
 
-        final boolean hasClicked=false;
+        final boolean hasClicked;
 
         int popupWidth = 700;
         int popupHeight = 850;
@@ -69,9 +69,25 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v){
 
                 selectBook(MainActivity.this);
+                popup.dismiss();
 
             }
         });
+
+        switch (index) {
+            case 1:
+                Drawable myImg = getResources().getDrawable(R.drawable.book_name1);
+                img.setImageDrawable(myImg);
+                break;
+            case 2:
+                Drawable myImg2 = getResources().getDrawable(R.drawable.book_name2);
+                img.setImageDrawable(myImg2);
+                break;
+            case 3:
+                Drawable myImg3 = getResources().getDrawable(R.drawable.book_name3);
+                img.setImageDrawable(myImg3);
+                break;
+        }
 
         Button cancel = (Button) layout.findViewById(R.id.cancel);
 
@@ -165,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
                 else if(rb3.isChecked())
                     index=3;
 
+                showPopup(MainActivity.this);
                 popup.dismiss();
 
             }
@@ -174,6 +191,7 @@ public class MainActivity extends AppCompatActivity {
 
             public void onClick(View v){
 
+                showPopup(MainActivity.this);
                 popup.dismiss();
             }
         });
