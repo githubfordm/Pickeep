@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <ImageButton
+            android:id="@+id/pick_doc"
+            android:layout_width="60dip"
+            android:layout_height="60dip"
+            android:scaleType="fitXY"
+            android:src="@drawable/plus2"
+            android:layout_gravity="right"
+            android:onClick="pickDocClicked"
+            />
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

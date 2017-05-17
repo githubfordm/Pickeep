@@ -1,0 +1,4 @@
+#Tue May 09 23:31:29 KST 2017
+base.0=C\:\\Users\\hoon\\AndroidStudioProjects\\Android-FilePicker-master\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_2
+renamed.0=classes.dex
+file.0=C\:\\Users\\hoon\\AndroidStudioProjects\\Android-FilePicker-master\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_2\\classes.dex

@@ -1,0 +1,7 @@
+#Tue May 09 23:35:06 KST 2017
+base.0=C\:\\Users\\hoon\\AndroidStudioProjects\\Android-FilePicker-master\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_933122ab17d7d84ba50e614d7741c5d96136935f
+renamed.1=classes.dex
+renamed.0=classes2.dex
+file.1=C\:\\Users\\hoon\\AndroidStudioProjects\\Android-FilePicker-master\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_fa77402feff9c9d4e1d0e15030d4cce85bf23e9b\\classes.dex
+base.1=C\:\\Users\\hoon\\AndroidStudioProjects\\Android-FilePicker-master\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_fa77402feff9c9d4e1d0e15030d4cce85bf23e9b
+file.0=C\:\\Users\\hoon\\AndroidStudioProjects\\Android-FilePicker-master\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_933122ab17d7d84ba50e614d7741c5d96136935f\\classes.dex
