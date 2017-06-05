@@ -71,11 +71,11 @@ public class TabLayoutHelper {
             }
         };
 
-        mInternalOnTabSelectedListener = new TabLayout.OnTabSelectedListener() {
+        mInternalOnTabSelectedListener = new TabLayout.OnTabSelectedListener() {  // 왜 있는지 모를 ??
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 handleOnTabSelected(tab);
-            }
+            } // 스크롤 위치 업데이트
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
@@ -464,7 +464,7 @@ public class TabLayoutHelper {
         mTabLayout.setScrollPosition(mTabLayout.getSelectedTabPosition(), 0, false);
     }
 
-    protected static class FixedTabLayoutOnPageChangeListener implements ViewPager.OnPageChangeListener {
+    protected static class FixedTabLayoutOnPageChangeListener implements ViewPager.OnPageChangeListener { // 실질적으로 TabLayout에서 Pager가 이동될 때 event를 처리해주는 Listener 클래스이다.
         private final WeakReference<TabLayout> mTabLayoutRef;
         private int mPreviousScrollState;
         private int mScrollState;
@@ -513,7 +513,7 @@ public class TabLayoutHelper {
     }
 
 
-    static class Internal {
+    static class Internal {  // 뭔소린지 이해 하나도 안된다.
         private static final Method mMethodSelectTab;
 
         static {

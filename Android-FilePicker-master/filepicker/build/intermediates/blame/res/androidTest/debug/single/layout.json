@@ -4,12 +4,12 @@
         "source": "C:\\Users\\hoon\\AndroidStudioProjects\\Android-FilePicker-master\\filepicker\\build\\intermediates\\bundles\\debug\\res\\layout\\fragment_photo_picker.xml"
     },
     {
-        "merged": "C:\\Users\\hoon\\AndroidStudioProjects\\Android-FilePicker-master\\filepicker\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\select_dialog_item_material.xml",
-        "source": "C:\\Users\\hoon\\.android\\build-cache\\8dc0957d35c66da846d71def0c73ef8c12954139\\output\\res\\layout\\select_dialog_item_material.xml"
-    },
-    {
         "merged": "C:\\Users\\hoon\\AndroidStudioProjects\\Android-FilePicker-master\\filepicker\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\fragment_media_picker.xml",
         "source": "C:\\Users\\hoon\\AndroidStudioProjects\\Android-FilePicker-master\\filepicker\\build\\intermediates\\bundles\\debug\\res\\layout\\fragment_media_picker.xml"
+    },
+    {
+        "merged": "C:\\Users\\hoon\\AndroidStudioProjects\\Android-FilePicker-master\\filepicker\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\select_dialog_item_material.xml",
+        "source": "C:\\Users\\hoon\\.android\\build-cache\\8dc0957d35c66da846d71def0c73ef8c12954139\\output\\res\\layout\\select_dialog_item_material.xml"
     },
     {
         "merged": "C:\\Users\\hoon\\AndroidStudioProjects\\Android-FilePicker-master\\filepicker\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\design_navigation_item_separator.xml",
@@ -20,12 +20,12 @@
         "source": "C:\\Users\\hoon\\.android\\build-cache\\8dc0957d35c66da846d71def0c73ef8c12954139\\output\\res\\layout\\abc_alert_dialog_button_bar_material.xml"
     },
     {
-        "merged": "C:\\Users\\hoon\\AndroidStudioProjects\\Android-FilePicker-master\\filepicker\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_action_tombstone.xml",
-        "source": "C:\\Users\\hoon\\.android\\build-cache\\8dc0957d35c66da846d71def0c73ef8c12954139\\output\\res\\layout\\notification_action_tombstone.xml"
-    },
-    {
         "merged": "C:\\Users\\hoon\\AndroidStudioProjects\\Android-FilePicker-master\\filepicker\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_icon_group.xml",
         "source": "C:\\Users\\hoon\\.android\\build-cache\\8dc0957d35c66da846d71def0c73ef8c12954139\\output\\res\\layout\\notification_template_icon_group.xml"
+    },
+    {
+        "merged": "C:\\Users\\hoon\\AndroidStudioProjects\\Android-FilePicker-master\\filepicker\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_action_tombstone.xml",
+        "source": "C:\\Users\\hoon\\.android\\build-cache\\8dc0957d35c66da846d71def0c73ef8c12954139\\output\\res\\layout\\notification_action_tombstone.xml"
     },
     {
         "merged": "C:\\Users\\hoon\\AndroidStudioProjects\\Android-FilePicker-master\\filepicker\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\fragment_doc_picker.xml",

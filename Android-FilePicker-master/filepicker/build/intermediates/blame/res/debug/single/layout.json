@@ -16,12 +16,12 @@
         "source": "C:\\Users\\hoon\\.android\\build-cache\\8dc0957d35c66da846d71def0c73ef8c12954139\\output\\res\\layout\\abc_action_menu_layout.xml"
     },
     {
-        "merged": "C:\\Users\\hoon\\AndroidStudioProjects\\Android-FilePicker-master\\filepicker\\build\\intermediates\\res\\merged\\debug\\layout\\design_layout_tab_icon.xml",
-        "source": "C:\\Users\\hoon\\.android\\build-cache\\0c12f8f0b8e416c9caab13c2153f858a247de061\\output\\res\\layout\\design_layout_tab_icon.xml"
-    },
-    {
         "merged": "C:\\Users\\hoon\\AndroidStudioProjects\\Android-FilePicker-master\\filepicker\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_title_material.xml",
         "source": "C:\\Users\\hoon\\.android\\build-cache\\8dc0957d35c66da846d71def0c73ef8c12954139\\output\\res\\layout\\abc_alert_dialog_title_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\hoon\\AndroidStudioProjects\\Android-FilePicker-master\\filepicker\\build\\intermediates\\res\\merged\\debug\\layout\\design_layout_tab_icon.xml",
+        "source": "C:\\Users\\hoon\\.android\\build-cache\\0c12f8f0b8e416c9caab13c2153f858a247de061\\output\\res\\layout\\design_layout_tab_icon.xml"
     },
     {
         "merged": "C:\\Users\\hoon\\AndroidStudioProjects\\Android-FilePicker-master\\filepicker\\build\\intermediates\\res\\merged\\debug\\layout\\design_layout_snackbar.xml",

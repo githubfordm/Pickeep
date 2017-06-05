@@ -25,12 +25,6 @@
             </intent-filter>
         </activity>
         <activity android:name="vi.filepicker.FragmentActivity" />
-        <activity
-            android:name="droidninja.filepicker.FilePickerActivity"
-            android:configChanges="orientation|keyboardHidden" />
-        <activity
-            android:name="droidninja.filepicker.MediaDetailsActivity"
-            android:configChanges="orientation|keyboardHidden" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -41,6 +35,13 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+ // 원래 없던 부분이였음!!!
+        <activity
+            android:name="droidninja.filepicker.FilePickerActivity"
+            android:configChanges="orientation|keyboardHidden" />
+        <activity
+            android:name="droidninja.filepicker.MediaDetailsActivity"
+            android:configChanges="orientation|keyboardHidden" />
     </application>
 
 </manifest>

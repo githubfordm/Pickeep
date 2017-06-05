@@ -45,4 +45,9 @@ public class FilePickerConst {
     public final static String DOC = "DOC";
     public final static String XLS = "XLS";
     public final static String TXT = "TXT";
+    public final static String HWP = "HWP";
+
+    public final static int READ_MODE = 100;
+    public final static int DELETE_MODE = 200;
+    public final static int SELECT_MODE = 300;
 }

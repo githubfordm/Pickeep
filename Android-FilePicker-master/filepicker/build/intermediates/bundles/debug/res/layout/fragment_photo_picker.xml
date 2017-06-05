@@ -21,5 +21,5 @@
         android:textSize="25sp"
         android:textStyle="bold"
         android:visibility="gone"
-        />
+        />  // 각 탭 패이지에서 해당파는 파일 리스트가 없는 경우 default로 보여주는 text이다.
 </RelativeLayout>

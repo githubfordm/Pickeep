@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\src\main\AndroidManifest.xml:2:1-24:12
+ADDED from C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\src\main\AndroidManifest.xml:2:1-35:12
 	package
 		ADDED from C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\src\main\AndroidManifest.xml:3:5-28
 		INJECTED from C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\src\main\AndroidManifest.xml
@@ -24,7 +24,7 @@ MERGED from [com.droidninja:filepicker:2.0.3] C:\Users\hoon\AndroidStudioProject
 	android:name
 		ADDED from C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\src\main\AndroidManifest.xml:6:22-77
 application
-ADDED from C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\src\main\AndroidManifest.xml:8:5-22:19
+ADDED from C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\src\main\AndroidManifest.xml:8:5-33:19
 MERGED from [com.droidninja:filepicker:2.0.3] C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\filepicker\build\intermediates\bundles\default\AndroidManifest.xml:14:5-33:19
 MERGED from [com.android.support:design:25.1.0] C:\Users\hoon\.android\build-cache\0c12f8f0b8e416c9caab13c2153f858a247de061\output\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:transition:25.1.0] C:\Users\hoon\.android\build-cache\6cd4b910b90504520f2f4d4c536775d522ad7fbd\output\AndroidManifest.xml:22:5-20
@@ -65,6 +65,25 @@ activity#vi.filepicker.FragmentActivity
 ADDED from C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\src\main\AndroidManifest.xml:21:9-63
 	android:name
 		ADDED from C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\src\main\AndroidManifest.xml:21:19-51
+provider#android.support.v4.content.FileProvider
+ADDED from C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\src\main\AndroidManifest.xml:23:9-31:20
+MERGED from [com.droidninja:filepicker:2.0.3] C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\filepicker\build\intermediates\bundles\default\AndroidManifest.xml:24:9-32:20
+	android:authorities
+		ADDED from C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\src\main\AndroidManifest.xml:25:13-82
+		INJECTED from C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\src\main\AndroidManifest.xml
+	android:grantUriPermissions
+		ADDED from C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\src\main\AndroidManifest.xml:27:13-47
+	android:exported
+		ADDED from C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\src\main\AndroidManifest.xml:26:13-37
+	android:name
+		ADDED from C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\src\main\AndroidManifest.xml:24:13-67
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\src\main\AndroidManifest.xml:28:9-30:53
+MERGED from [com.droidninja:filepicker:2.0.3] C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\filepicker\build\intermediates\bundles\default\AndroidManifest.xml:29:13-31:58
+	android:resource
+		ADDED from C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\src\main\AndroidManifest.xml:30:13-51
+	android:name
+		ADDED from C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\src\main\AndroidManifest.xml:29:13-63
 uses-sdk
 INJECTED from C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.droidninja:filepicker:2.0.3] C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\filepicker\build\intermediates\bundles\default\AndroidManifest.xml:7:5-9:41
@@ -101,19 +120,3 @@ ADDED from [com.droidninja:filepicker:2.0.3] C:\Users\hoon\AndroidStudioProjects
 		ADDED from [com.droidninja:filepicker:2.0.3] C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\filepicker\build\intermediates\bundles\default\AndroidManifest.xml:22:13-63
 	android:name
 		ADDED from [com.droidninja:filepicker:2.0.3] C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\filepicker\build\intermediates\bundles\default\AndroidManifest.xml:21:13-70
-provider#android.support.v4.content.FileProvider
-ADDED from [com.droidninja:filepicker:2.0.3] C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\filepicker\build\intermediates\bundles\default\AndroidManifest.xml:24:9-32:20
-	android:authorities
-		ADDED from [com.droidninja:filepicker:2.0.3] C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\filepicker\build\intermediates\bundles\default\AndroidManifest.xml:26:13-82
-	android:grantUriPermissions
-		ADDED from [com.droidninja:filepicker:2.0.3] C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\filepicker\build\intermediates\bundles\default\AndroidManifest.xml:28:13-47
-	android:exported
-		ADDED from [com.droidninja:filepicker:2.0.3] C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\filepicker\build\intermediates\bundles\default\AndroidManifest.xml:27:13-37
-	android:name
-		ADDED from [com.droidninja:filepicker:2.0.3] C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\filepicker\build\intermediates\bundles\default\AndroidManifest.xml:25:13-67
-meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from [com.droidninja:filepicker:2.0.3] C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\filepicker\build\intermediates\bundles\default\AndroidManifest.xml:29:13-31:58
-	android:resource
-		ADDED from [com.droidninja:filepicker:2.0.3] C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\filepicker\build\intermediates\bundles\default\AndroidManifest.xml:31:17-55
-	android:name
-		ADDED from [com.droidninja:filepicker:2.0.3] C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\filepicker\build\intermediates\bundles\default\AndroidManifest.xml:30:17-67
