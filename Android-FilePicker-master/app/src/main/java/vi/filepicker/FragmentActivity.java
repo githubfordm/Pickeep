@@ -12,7 +12,7 @@ public class FragmentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment);
-       // initView();  // 원래는 MainActivity.class -> FragmentActivity.class ->FilePickerActivity 순인데 FragmentActivity하는 역할 메인에 넘기고 그냥 빼버림
+       // initView();
     }
 
     private void initView() {

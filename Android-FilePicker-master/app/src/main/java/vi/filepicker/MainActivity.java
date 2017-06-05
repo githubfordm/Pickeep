@@ -3,9 +3,6 @@ package vi.filepicker;
 import android.Manifest;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.media.Image;
-import android.media.MediaScannerConnection;
-import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -16,11 +13,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
-
-import com.bumptech.glide.load.model.stream.MediaStoreStreamLoader;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -33,14 +27,11 @@ import droidninja.filepicker.FilePickerConst;
 import droidninja.filepicker.PickerManager;
 import droidninja.filepicker.PickerManagerListener;
 import droidninja.filepicker.fragments.DocFragment;
-import droidninja.filepicker.fragments.DocPickerFragment;
 import droidninja.filepicker.fragments.MediaDetailPickerFragment;
 import droidninja.filepicker.fragments.MediaFolderPickerFragment;
 import droidninja.filepicker.fragments.MediaPickerFragment;
-import droidninja.filepicker.utils.DMediaScanner;
 import droidninja.filepicker.utils.FragmentUtil;
 import droidninja.filepicker.DocMainFragment;
-import droidninja.filepicker.utils.MediaStoreHelper;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.PermissionUtils;
 import permissions.dispatcher.RuntimePermissions;
@@ -55,9 +46,9 @@ public class MainActivity extends AppCompatActivity implements
 
     private static final String TAG = FilePickerActivity.class.getSimpleName();
     DocMainFragment photoFragment;
-    File sdcard = Environment.getExternalStorageDirectory();  // 추후 삭제
-    String keyword = "/KakaoTalkDownload/";  // 추후 삭제
-    private final String dir = sdcard.getAbsolutePath()+keyword;  // storage/emulated/0/KakaoTalkDownload 절대경로가 저장되있을 거야
+   // File sdcard = Environment.getExternalStorageDirectory();  // 추후 삭제
+  //  String keyword = "/KakaoTalkDownload/";  // 추후 삭제
+    private String dir; //= sdcard.getAbsolutePath()+keyword;  // storage/emulated/0/KakaoTalkDownload 절대경로가 저장되있을 거야
     String title;
     private static final String[] PERMISSION_ONPICKDOC = new String[] {"android.permission.WRITE_EXTERNAL_STORAGE"};
     ImageButton button;
@@ -69,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements
         Intent temp = getIntent();
         if(temp != null) // 여기서 dir 변수 대입해주기.
         {
+            dir = temp.getStringExtra("path");
             if(!PermissionUtils.hasSelfPermissions(this,PERMISSION_ONPICKDOC)) // 권한 체크
                 ActivityCompat.requestPermissions(this, PERMISSION_ONPICKDOC, 1);   // 권한 요청 창 띄우기
 
@@ -231,7 +223,7 @@ public class MainActivity extends AppCompatActivity implements
         else if(i == R.id.Menu_Select)
         {
             PickerManager.getInstance().setModeType(FilePickerConst.SELECT_MODE);
-            button.setImageResource(R.drawable.plus);
+            button.setImageResource(R.drawable.main_plus);
             onPickDoc();
         }
         return super.onOptionsItemSelected(item);

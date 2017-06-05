@@ -17,6 +17,6 @@
         android:orderInCategory="3"
         android:title="Add document"
         app:showAsAction="never"
-        android:icon="@drawable/plus"
+        android:icon="@drawable/main_plus"
         />
 </menu>

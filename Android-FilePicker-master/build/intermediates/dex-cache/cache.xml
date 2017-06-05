@@ -3,6 +3,69 @@
 
     <item
         is-multidex="true"
+        jar="C:\Users\hoon\.android\build-cache\c72eb46bd29ce55bf8ac5eda9643a463c1a304bb\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="f02263e35e52668dd17b73bf961437e3d562b35f">
+        <dex dex="C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ff013ddad612f4c58c2b4bcadb817ea3f429450a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\hoon\.android\build-cache\7617d11e4f0fbf4156c3b39ccafab2d3ea7c9cf1\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="aee64634871d88a419d59eb743c1258a60f19700">
+        <dex dex="C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_86a03509bcabcdfc643ab644885e4c3c21a76bf2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\hoon\.android\build-cache\af12ca9bcdedead482c46855cabf897c201a9aa9\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e79aa3d9a16f8c9f16377c0608de70a8f31e5d80">
+        <dex dex="C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_fa5437e0e41b98b7bb33bd7ff3883162aef67e17\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\hoon\.android\build-cache\612f79426f78d5000dd5115815f8c8c9db552669\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b266c8faa5af72e579b9da36ef35053ffed6ac64">
+        <dex dex="C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_7baaf8c3129d53f7dc20ecdd841219dc8d152331\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e84143d224cae658e808237daed7f2f310d87094">
+        <dex dex="C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_fa77402feff9c9d4e1d0e15030d4cce85bf23e9b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\hoon\.android\build-cache\7521d9ae1a6a3c85455df139fc925a6fb1734102\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_e1ca7af757cec210ea5a3db9e6828d27d86d2910\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\hoon\.android\build-cache\09811b92f3d664bb7288865dc460b67ed7d0726d\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d38084015027549951cbaea5d5f6fb795cc81151">
+        <dex dex="C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f3213ff9bc6be9eb282d5532d6ba7ac8f960ab80\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
@@ -12,12 +75,57 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jar="C:\Users\hoon\.android\build-cache\257c42e8138688a8d9d64cb852d3445d52c509e6\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="a8b2b0a3754ac9d67fa05dbc41a2a737d76630b4">
-        <dex dex="C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_fa77402feff9c9d4e1d0e15030d4cce85bf23e9b\classes.dex" />
+        sha1="6fb6ac3e8d3b9013819920d9ea11f3803c4c0033">
+        <dex dex="C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_810108ec857fa227d8fc3a86eaa514eeee09fc17\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\hoon\.android\build-cache\242463385aad57e68c64fe98f1c0ad2d13e5dc4e\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2a53c4f3518116b8c6aee0e477233f0f7da8616f">
+        <dex dex="C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_a315c5360161873f9f3cbdb54ef6b05865799088\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\hoon\.android\build-cache\103f5f55128d518b4234b74b18791bb2fdc5ad52\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="30103d98fa5ed824b54af839c85e2111f9bde8ec">
+        <dex dex="C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f1c3da03c5f77192a5c7ed13911f23fe6f37de9b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\hoon\.android\build-cache\5f0723d5a921b0810fb92019830556ca20930da2\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0a0ef86b7fa568a52bf6214a0326ca1f1d618da7">
+        <dex dex="C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_e27f26e3b8ed521e2947d7a73ec6237976295dbb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\hoon\.android\build-cache\8628e165a127a166116797d527de498cab5b1db9\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
+        <dex dex="C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_efc62d26cf49f7700b0706d08a20a458b424997c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\hoon\.android\build-cache\f9c6734f6a1d3b481c7033c01c5bdc9584186ede\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1630658fbc2d222b988603c27b4a4249586fbfe7">
+        <dex dex="C:\Users\hoon\AndroidStudioProjects\Android-FilePicker-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_34e57834d3d198f63d3f25dea59a261978c08a7e\classes.dex" />
     </item>
 
 </items>
