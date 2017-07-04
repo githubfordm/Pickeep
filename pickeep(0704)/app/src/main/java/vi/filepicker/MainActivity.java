@@ -1,0 +1,196 @@
+package vi.filepicker;
+
+import android.Manifest;
+import android.content.ContentValues;
+import android.content.Intent;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.nio.channels.FileChannel;
+import java.util.ArrayList;
+import java.util.List;
+
+import droidninja.filepicker.FilePickerActivity;
+import droidninja.filepicker.FilePickerConst;
+import droidninja.filepicker.PickerManager;
+import droidninja.filepicker.utils.FragmentUtil;
+import droidninja.filepicker.DocMainFragment;
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.PermissionUtils;
+import permissions.dispatcher.RuntimePermissions;
+
+@RuntimePermissions
+public class MainActivity extends AppCompatActivity{
+
+    private static final String TAG = FilePickerActivity.class.getSimpleName();
+    DocMainFragment photoFragment;
+    private String dir; // 폴더 경로 저장되어있음.
+    String title;
+    private static final String[] PERMISSION_ONPICKDOC = new String[] {"android.permission.WRITE_EXTERNAL_STORAGE"};
+    ImageButton button;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        button = (ImageButton)findViewById(R.id.pick_doc);
+        Intent temp = getIntent();
+        if(temp != null) // 여기서 dir 변수 대입해주기.
+        {
+            dir = temp.getStringExtra("path");
+
+            if(PermissionUtils.hasSelfPermissions(this,PERMISSION_ONPICKDOC))  // 권한 허락을 한 경우
+            {
+                if (getSupportActionBar() != null)
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+                title = getTitleFromPath(dir);
+                getSupportActionBar().setTitle(title);
+                PickerManager.getInstance().setModeType(FilePickerConst.READ_MODE);
+                openSpecificFragment();
+            }
+            else    // 권한 허락을 안한 경우
+               finish();
+        }
+    }
+
+    public void pickDocClicked(View view) {
+        if(PickerManager.getInstance().getModeType() == FilePickerConst.READ_MODE) {// 읽기 모드였을 때 버튼을 누르면 권한 체크 후, 다음 Activty로 intent 보냄.
+            Toast.makeText(this,"읽기 모드에서는 지원되지 않는 기능입니다.",Toast.LENGTH_LONG).show();
+        }
+        else if(PickerManager.getInstance().getModeType() == FilePickerConst.DELETE_MODE)   // 지우기 모드였을 때, 버튼을 누르면 현재 선택한 파일 리스트 삭제한 후 모드를 자동으로 변경함.
+        {
+            PickerManager.getInstance().delete_remove_all(getApplicationContext());    // 삭제하려고 선택한 파일 리스트들 전부 삭제해버려!
+            PickerManager.getInstance().setModeType(FilePickerConst.READ_MODE);  // 삭제한 다음에 자동으로 Default Mode인 읽기 모드로 전환하고
+            button.setImageResource(R.drawable.read);   // 버튼의 이미지도 그에 맞게 변경.
+            if(photoFragment != null)   // re-query
+            {
+                photoFragment.onDestroy();
+                openSpecificFragment();
+            }
+        }
+        else if(PickerManager.getInstance().getModeType() == FilePickerConst.SELECT_MODE)  // 무쓸모. 만약의 경우를 대비.
+        {
+            onPickDoc();
+        }
+    }
+
+    @NeedsPermission({Manifest.permission.WRITE_EXTERNAL_STORAGE})
+    public void onPickDoc() {
+        Intent intent = new Intent(this, FilePickerActivity.class);
+        intent.putExtra("path",dir);
+
+        PickerManager.getInstance().setModeType(FilePickerConst.SELECT_MODE);  // 다음 Activity로 넘기기 전에 Mode 변환해주고
+        PickerManager.getInstance().getRemoveDocFiles().clear();  // 삭제할 파일 리스트는 물건너갔으니까 깨끗하게 청소하고 intent보내기.
+        startActivityForResult(intent,FilePickerConst.REQUEST_CODE_DOC);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {  // 여기서 받은 path를 폴더에 저장하면 된다. FilePickerActivity의 returnData() 참조할 것
+        super.onActivityResult(requestCode, resultCode, data);  // 좆같네 ㅅㅂ 2
+        PickerManager.getInstance().setModeType(FilePickerConst.READ_MODE);   // file path 리스트 보내기전에 모드를 Read Mode(Default)로 바꿔주고
+        button.setImageResource(R.drawable.read);
+        if(requestCode == FilePickerConst.REQUEST_CODE_DOC && resultCode == RESULT_OK)
+        {
+            button.setImageResource(R.drawable.read);
+            try {
+                ArrayList<String> paths = data.getStringArrayListExtra(FilePickerConst.KEY_SELECTED_DOCS); // InputFile
+                for(int i=0; i<paths.size(); i++)
+                {
+                    File add_file = new File(paths.get(i));
+                    if(add_file != null && add_file.exists())
+                    {
+                        FileInputStream in = new FileInputStream(add_file);
+                        FileOutputStream out = new FileOutputStream(new File(dir+getTitleFromPath(paths.get(i)))); // 현재 폴더 + 파일 이름으로 outStream 구별.
+                        FileChannel fcin = in.getChannel();
+                        FileChannel fcout = out.getChannel();
+
+                        long size = 0;
+                        size = fcin.size();
+                        fcin.transferTo(0,size,fcout);
+
+                        fcout.close();
+                        fcin.close();
+                        out.close();
+                        in.close();
+
+                        ContentValues newPath = new ContentValues();
+                        newPath.put(MediaStore.Files.FileColumns.DATA,dir+getTitleFromPath(paths.get(i)));  // copy 사실 DB에 알려주기
+                        getContentResolver().update(MediaStore.Files.getContentUri("external"),
+                                newPath,
+                                MediaStore.Files.FileColumns.DATA+" like ? ",
+                                new String[]{paths.get(i)} );
+                        add_file.delete();
+                    }
+                }
+                PickerManager.getInstance().getSelectedFiles().clear();  // DocFiles<> clear하기.
+                if(photoFragment != null)   // re-query
+                {
+                    Log.i("aaa","photoFragment != null");
+                    photoFragment.onDestroy();
+                    openSpecificFragment();
+                }
+                Toast.makeText(this,"파일이 모두 이동되었습니다.",Toast.LENGTH_LONG).show();
+            } catch (Throwable e) { e.printStackTrace(); }
+        }
+    }
+
+    private void openSpecificFragment() {
+        if(PickerManager.getInstance().isFirst())
+            PickerManager.getInstance().addDocTypes();
+
+        photoFragment = DocMainFragment.newInstance(dir);      // 모든 각각의 Fragment를 담고있는 DocPickerFragment를 만들어서
+        FragmentUtil.addFragment(this, R.id.container, photoFragment);          // 현재 빈 FrameLayout에 덮어씌운다.
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int i = item.getItemId();
+        if(i == R.id.Menu_Read) // PickerManger 의 Type을 바꿔줌.
+        {
+            PickerManager.getInstance().setModeType(FilePickerConst.READ_MODE);
+            button.setImageResource(R.drawable.read);
+        }
+        else if(i == R.id.Menu_Delete)
+        {
+            PickerManager.getInstance().setModeType(FilePickerConst.DELETE_MODE);
+            button.setImageResource(R.drawable.delete);
+        }
+        else if(i == R.id.Menu_Select)
+        {
+            PickerManager.getInstance().setModeType(FilePickerConst.SELECT_MODE);
+            //button.setImageResource(R.drawable.plus);
+            onPickDoc();
+        }
+        else if(i == android.R.id.home)
+        {
+            PickerManager.getInstance().getRemoveDocFiles().clear();  // 혹시 모르니까.
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public String getTitleFromPath(String path)
+    {
+        String[] list = path.split("/");  // storage/emulated/0/KakaoTalkDownload/ -> storage[0] , emulated[1] , 0[2] , KakaoTalDownload[3]
+        return list[list.length-1];
+    }
+}
