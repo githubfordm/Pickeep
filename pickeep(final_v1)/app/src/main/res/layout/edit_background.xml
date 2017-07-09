@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            //첫번째 배경 선택화면
+
+            <ImageButton
+                android:id="@+id/button1"
+                android:layout_width="110dp"
+                android:layout_height="180dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/tree_modify_min" />
+
+            <RadioButton
+                android:id="@+id/radiobutton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/button1"
+                android:layout_below="@+id/button1"
+                android:layout_marginLeft="1dp"
+                android:gravity="center"
+                android:text="Origin Design"
+                android:onClick="checked"/>
+
+            //두번째 배경 선택화면
+
+            <ImageButton
+                android:id="@+id/button2"
+                android:layout_width="110dp"
+                android:layout_height="180dp"
+                android:layout_above="@+id/radiobutton1"
+                android:layout_toEndOf="@+id/radiobutton1"
+                android:layout_toRightOf="@+id/radiobutton1"
+                android:background="@drawable/bright_tree_modify_min" />
+
+            <RadioButton
+                android:id="@+id/radiobutton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/button2"
+                android:layout_alignStart="@+id/button2"
+                android:layout_below="@+id/button2"
+                android:layout_marginLeft="1dp"
+                android:gravity="center"
+                android:text="Bright Design"
+                android:onClick="checked"/>
+
+            //세번째 배경 선택화면
+
+            <ImageButton
+                android:id="@+id/button3"
+                android:layout_width="110dp"
+                android:layout_height="180dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/button2"
+                android:background="@drawable/blue_modify_min" />
+
+            <RadioButton
+                android:id="@+id/radiobutton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/button3"
+                android:layout_alignStart="@+id/button3"
+                android:layout_below="@+id/button3"
+                android:gravity="center"
+                android:text="Blue Design"
+                android:onClick="checked"/>
+
+            //네번째 배경 선택화면
+
+            <ImageButton
+                android:id="@+id/button4"
+                android:layout_width="110dp"
+                android:layout_height="180dp"
+                android:layout_alignLeft="@+id/radiobutton1"
+                android:layout_alignStart="@+id/radiobutton1"
+                android:layout_below="@+id/radiobutton1"
+                android:layout_marginLeft="57dp"
+                android:layout_marginStart="57dp"
+                android:layout_marginTop="11dp"
+                android:background="@drawable/red_modify_min" />
+
+            <RadioButton
+                android:id="@+id/radiobutton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/button4"
+                android:layout_alignStart="@+id/button4"
+                android:layout_below="@+id/button4"
+                android:layout_marginLeft="4dp"
+                android:gravity="center"
+                android:text="Red Design"
+                android:onClick="checked"/>
+
+            //다섯번째 배경 선택화면
+
+            <ImageButton
+                android:id="@+id/button5"
+                android:layout_width="110dp"
+                android:layout_height="180dp"
+                android:layout_alignTop="@+id/button4"
+                android:layout_marginLeft="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_toEndOf="@+id/button4"
+                android:layout_toRightOf="@+id/button4"
+                android:background="@drawable/green_modify_min" />
+
+            <RadioButton
+                android:id="@+id/radiobutton5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/button5"
+                android:layout_alignStart="@+id/button5"
+                android:layout_below="@+id/button5"
+                android:gravity="center"
+                android:text="Green Design"
+                android:onClick="checked"/>
+        </RelativeLayout>
+
+    <Button
+        android:id="@+id/ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/back"
+        android:layout_alignBottom="@+id/back"
+        android:text="선택"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/back"
+        android:layout_toStartOf="@+id/back" />
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="15dp"
+        android:text="뒤로가기"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>
