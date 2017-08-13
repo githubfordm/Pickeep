@@ -1,80 +1,0 @@
-
-T
-squid:S899";Do something with the "boolean" value returned by "delete".(ïî±ùúÿÿÿÿ
-dsquid:UselessImportCheck"BRemove this unused import 'android.view.animation.AnimationUtils'.(µ¬
-@squid:S1075"&Remove this hard-coded path-delimiter.(„òĞöüÿÿÿÿ
-Gsquid:S1068"-Remove this unused "viewGroup" private field.(™á‘€şÿÿÿÿ
-_squid:S1192"JDefine a constant instead of duplicating this literal "/PicKeep/" 6 times.(÷‹»¡
-:squid:S1181"%Catch Exception instead of Throwable.(õ„şë
-gsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ìà˜ë
-:squid:S1181"%Catch Exception instead of Throwable.(õ„şë
-lsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Í­í†şÿÿÿÿ
-rsquid:S1450"XRemove the "folderAdd" field and declare it as a local variable in the relevant methods.(¢ŒÀäøÿÿÿÿ
-lsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(è¹Ğñÿÿÿÿÿ
-rsquid:S00116"\Rename this field "directory_pickeep" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•É¹©
-[squid:S1161":Add the "@Override" annotation above this method signature(ÉÎÍïıÿÿÿÿ8œşˆ×Ğ+
-ssquid:S00116"XRename this field "gallery_photo" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(İ”È‡øÿÿÿÿ
-Rsquid:S1197"8Move the array designator from the variable to the type.(ùº‡şÿÿÿÿ
-gsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ùá…À
-osquid:S00116"TRename this field "text_list" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ùº‡şÿÿÿÿ
-ssquid:S00116"XRename this field "delete_layout" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(áıü±ùÿÿÿÿ
-?squid:S00108")Either remove or fill this block of code.(õ„şë
-;squid:S1075"&Remove this hard-coded path-delimiter.(êåû‰
-fsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(°üŞ+
-Rsquid:UselessImportCheck"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ
-[squid:S1161":Add the "@Override" annotation above this method signature(Û›ë´øÿÿÿÿ8œşˆ×Ğ+
-N
-squid:S899";Do something with the "boolean" value returned by "delete".(œğŠ
-ksquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ĞÙôû8œşˆ×Ğ+
-lsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(èÿ©òúÿÿÿÿ
-asquid:S1192"GDefine a constant instead of duplicating this literal "index " 3 times.(ÕĞÄ‹ùÿÿÿÿ
-qsquid:S1450"WRemove the "listener" field and declare it as a local variable in the relevant methods.(òÙåÂüÿÿÿÿ
-?squid:S00108")Either remove or fill this block of code.(õ„şë
-asquid:S1192"GDefine a constant instead of duplicating this literal "delete" 3 times.(ÕĞÄ‹ùÿÿÿÿ
-nsquid:S00116"XRename this field "create_layout" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ã¹
-dsquid:S1192"ODefine a constant instead of duplicating this literal "EnterActivity" 13 times.(·ç¬ï
-Xsquid:S2583"CChange this condition so that it does not always evaluate to "true"(şšµ›
-Xsquid:UselessImportCheck"6Remove this unused import 'android.location.Criteria'.(ñÈ¬
-psquid:S00116"URename this field "cancel_btn" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ğ»úÙıÿÿÿÿ
-_squid:UselessImportCheck"=Remove this unused import 'android.location.LocationManager'.(Ü©ÎÎ
-:squid:S1181"%Catch Exception instead of Throwable.(õ„şë
-nsquid:S00116"XRename this field "delete_window" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(üÅóŠ
-@squid:S1075"&Remove this hard-coded path-delimiter.(êÓœàşÿÿÿÿ
-Vsquid:S1854"<Remove this useless assignment to local variable "filePath".(„òĞöüÿÿÿÿ
-gsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(üøœ¹
-lsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(êÓœàşÿÿÿÿ
-`squid:UselessImportCheck"?Remove this unused import 'android.support.annotation.NonNull'.(¼Åß
-N"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(ŸÌ§ô
-Rsquid:S1197"8Move the array designator from the variable to the type.(Í­í†şÿÿÿÿ
-nsquid:S00116"XRename this field "default_photo" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(®õ¢ƒ
-Esquid:S1481"+Remove this unused "result" local variable.(ïî±ùúÿÿÿÿ
-psquid:S00116"ZRename this field "BACKGROUND_MODE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´çÄŞ
-`squid:UselessImportCheck">Remove this unused import 'android.location.LocationListener'.(æ‡ë 
-lsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(§®ğáıÿÿÿÿ
-isquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(èÿ©òúÿÿÿÿ
-psquid:MaximumInheritanceDepth"=This class has 11 parents which is greater than 5 authorized.(‡Ñ§ûÿÿÿÿ8œşˆ×Ğ+
-lsquid:S00116"VRename this field "button_list" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·…
-gsquid:UselessImportCheck"ERemove this unused import 'android.graphics.drawable.BitmapDrawable'.(³Ï÷
-isquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñ­©ªşÿÿÿÿ
-esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(†ôüÿÿÿÿ
-ssquid:S00116"XRename this field "create_window" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÅÄĞÄúÿÿÿÿ
-lsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(ÉÎÍïıÿÿÿÿ
-?squid:S1481"*Remove this unused "title" local variable.(üÃ²®
-Tsquid:S1854":Remove this useless assignment to local variable "result".(ïî±ùúÿÿÿÿ
-^squid:HiddenFieldCheck"9Rename "index" which hides the field declared at line 74.(°è…§úÿÿÿÿ
-lsquid:S00116"QRename this field "ok_btn" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘ñşÿÿÿÿ
-:squid:S1075"&Remove this hard-coded path-delimiter.(°üŞ+
-esquid:S2583"DChange this condition so that it does not always evaluate to "false"(ñôË³úÿÿÿÿ8œşˆ×Ğ+
-?squid:S00108")Either remove or fill this block of code.(õ„şë
-Nsquid:S1854"9Remove this useless assignment to local variable "title".(üÃ²®
-Osquid:S1172".Remove this unused method parameter "context".(­Îıÿÿÿÿ8œşˆ×Ğ+
-squid:S00116"wRename this field "MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(û¾ÌÅ
-T
-squid:S899";Do something with the "boolean" value returned by "delete".(é‘‚©úÿÿÿÿ
-@squid:S1075"&Remove this hard-coded path-delimiter.(ğ¨®£úÿÿÿÿ
-dsquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹Ü©¸
-=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-S"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(×ö³–úÿÿÿÿ
-bsquid:HiddenFieldCheck"=Rename "viewGroup" which hides the field declared at line 54.(Ò¢¯Ùÿÿÿÿÿ
-Msquid:S1197"8Move the array designator from the variable to the type.(·…
-ssquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‡·âïûÿÿÿÿ8¾–Ñ×Ğ+
