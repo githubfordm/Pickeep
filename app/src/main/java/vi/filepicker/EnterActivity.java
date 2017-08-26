@@ -5,18 +5,11 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.location.Criteria;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,12 +20,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,7 +36,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
 
 import permissions.dispatcher.PermissionUtils;
 
@@ -75,9 +68,18 @@ public class EnterActivity extends AppCompatActivity {
     Button ok_btn; // delete_window
     Button cancel_btn; // delete_window
     Button ok; //create_window
-    Button select; // create_window
+    Button select_pic; // create_window
+    Button select_book; // create_window
     Button cancel; //create_window
+    Button select_ok;
+    Button select_cancel;
+    private int rb_index = 1;
     File directory_pickeep;
+
+    // 책 선택 팝업창
+    private ImageView get_select_iv[] = new ImageView[9];
+    private LinearLayout get_select_ll[] = new LinearLayout[9];
+    private RadioButton get_select_rb[] = new RadioButton[9];
 
     private View.OnLongClickListener listener;
 
@@ -86,6 +88,8 @@ public class EnterActivity extends AppCompatActivity {
 
     private TextView text_list[];
     private BitmapFactory.Options options;
+
+    private ClickListener mClickListener = new ClickListener();
 
     @SuppressLint("NewApi")
     @Override
@@ -96,20 +100,14 @@ public class EnterActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LoadingActivity.class);
         startActivity(intent);
 
-        if(!PermissionUtils.hasSelfPermissions(this,PERMISSION_ONPICKDOC)) // 권한 체크 안되있으면
-        {
-            ActivityCompat.requestPermissions(this, PERMISSION_ONPICKDOC, 1);   // 권한 요청 창 띄우기
-            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+        boolean readExternalPermission = PermissionUtils.hasSelfPermissions(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+        if (readExternalPermission) { // 권한 체크 이상없으면
+            init();
+        } else { // 권한 체크 안되있으면
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                     MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-        }
-        else // 권한 체크 이상없으면
-            init();
-    }
-
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if((PermissionUtils.getTargetSdkVersion(this) < 23 && !PermissionUtils.hasSelfPermissions(this, PERMISSION_ONPICKDOC)) || grantResults[0]== PackageManager.PERMISSION_GRANTED){
-            init();
+            // 권한 요청 창 띄우기
         }
     }
 
@@ -204,7 +202,7 @@ public class EnterActivity extends AppCompatActivity {
 
     private void set_popup_create()
     {
-        default_photo = BitmapFactory.decodeResource(getResources(),R.drawable.book_2,options);
+        default_photo = BitmapFactory.decodeResource(getResources(),R.drawable.book,options);
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         create_layout = inflater.inflate(R.layout.popup_activity, (ViewGroup)findViewById(R.id.popup));
         create_window = new PopupWindow(this);
@@ -214,20 +212,33 @@ public class EnterActivity extends AppCompatActivity {
         create_window.setFocusable(true);
 
         bookPhoto = (ImageView) create_layout.findViewById(R.id.getPic);
+        // 책 이미지 가져오기
+        setBookImage();
         //책이름(EditText)
         bookName = (EditText) create_layout.findViewById(R.id.getTitle);
 
         //사진 선택 버튼
-        select = (Button) create_layout.findViewById(R.id.select);
+        select_pic = (Button) create_layout.findViewById(R.id.select_pic);
+
+        //책 선택 버튼
+        select_book = (Button) create_layout.findViewById(R.id.select_book);
 
         // 사진 선택 버튼 클릭 시 internal 갤러리 띄우기
-        select.setOnClickListener(new View.OnClickListener() {
+        select_pic.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
                 startActivityForResult(intent, 0);
                 create_window.setFocusable(false);
+            }
+        });
+
+        // 책 이미지 선택 버튼 클릭 시 popup창 띄우기
+        select_book.setOnClickListener(new View.OnClickListener(){
+
+            public void onClick(View v){
+                set_select_book_create();
             }
         });
 
@@ -268,6 +279,23 @@ public class EnterActivity extends AppCompatActivity {
             }
         });
 
+        // 검색 버튼 누를 시 (이미지 검색)
+        Button search;
+        search = (Button) create_layout.findViewById(R.id.search);
+
+        search.setOnClickListener(new View.OnClickListener(){
+
+            public void onClick(View V){
+                if (bookName.getText().toString().length() == 0) // 책 제목을 넣지 않았다면,
+                    Toast.makeText(getApplicationContext(), "책 제목을 입력한 후 검색하세요.", Toast.LENGTH_LONG).show();
+                else{
+                    String getUri = "https://www.google.com/search?tbm=isch&q=" + bookName.getText();
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getUri));
+                    startActivity(intent);
+                }
+            }
+        });
+
         //취소 버튼을 누를시
         cancel = (Button) create_layout.findViewById(R.id.cancel);
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -295,6 +323,183 @@ public class EnterActivity extends AppCompatActivity {
             create_window.setFocusable(true);
             create_window.showAtLocation(create_layout, Gravity.CENTER, OFFSET_X, OFFSET_Y);
         }
+    }
+
+    // 책 이미지 팝업창 띄우기
+    private void set_select_book_create(){
+
+        LayoutInflater infalter = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        create_layout = infalter.inflate(R.layout.popup_select_book, (ViewGroup)findViewById(R.id.select_book_popup));
+        create_window = new PopupWindow(this);
+        create_window.setContentView(create_layout);
+        create_window.setWidth(800);
+        create_window.setHeight(500);
+        create_window.setFocusable(true);
+
+        setSelectId();
+
+        // 사용자가 이미지 눌렀을 시 라디오버튼 check되게 한다
+        get_select_iv[1].setOnClickListener(mClickListener); get_select_ll[1].setOnClickListener(mClickListener);
+        get_select_iv[2].setOnClickListener(mClickListener); get_select_ll[2].setOnClickListener(mClickListener);
+        get_select_iv[3].setOnClickListener(mClickListener); get_select_ll[3].setOnClickListener(mClickListener);
+        get_select_iv[4].setOnClickListener(mClickListener); get_select_ll[4].setOnClickListener(mClickListener);
+        get_select_iv[5].setOnClickListener(mClickListener); get_select_ll[5].setOnClickListener(mClickListener);
+        get_select_iv[6].setOnClickListener(mClickListener); get_select_ll[6].setOnClickListener(mClickListener);
+        get_select_iv[7].setOnClickListener(mClickListener); get_select_ll[7].setOnClickListener(mClickListener);
+        get_select_iv[8].setOnClickListener(mClickListener); get_select_ll[8].setOnClickListener(mClickListener);
+
+
+        select_ok.setOnClickListener(new View.OnClickListener(){
+
+            public void onClick(View v){
+                set_popup_create();
+            }
+        });
+
+        select_cancel.setOnClickListener(new View.OnClickListener(){
+
+            public void onClick(View v){
+                set_popup_create();
+            }
+
+        });
+
+    }
+
+    // 책 이미지 팝업창 아이디 부여
+    private void setSelectId(){
+
+        get_select_iv[1] = (ImageView) create_layout.findViewById(R.id.book_iv_1);
+        get_select_iv[2] = (ImageView) create_layout.findViewById(R.id.book_iv_2);
+        get_select_iv[3] = (ImageView) create_layout.findViewById(R.id.book_iv_3);
+        get_select_iv[4] = (ImageView) create_layout.findViewById(R.id.book_iv_4);
+        get_select_iv[5] = (ImageView) create_layout.findViewById(R.id.book_iv_5);
+        get_select_iv[6] = (ImageView) create_layout.findViewById(R.id.book_iv_6);
+        get_select_iv[7] = (ImageView) create_layout.findViewById(R.id.book_iv_7);
+        get_select_iv[8] = (ImageView) create_layout.findViewById(R.id.book_iv_8);
+
+        get_select_ll[1] = (LinearLayout) create_layout.findViewById(R.id.book_rb_ll_1);
+        get_select_ll[2] = (LinearLayout) create_layout.findViewById(R.id.book_rb_ll_2);
+        get_select_ll[3] = (LinearLayout) create_layout.findViewById(R.id.book_rb_ll_3);
+        get_select_ll[4] = (LinearLayout) create_layout.findViewById(R.id.book_rb_ll_4);
+        get_select_ll[5] = (LinearLayout) create_layout.findViewById(R.id.book_rb_ll_5);
+        get_select_ll[6] = (LinearLayout) create_layout.findViewById(R.id.book_rb_ll_6);
+        get_select_ll[7] = (LinearLayout) create_layout.findViewById(R.id.book_rb_ll_7);
+        get_select_ll[8] = (LinearLayout) create_layout.findViewById(R.id.book_rb_ll_8);
+
+        get_select_rb[1] = (RadioButton) create_layout.findViewById(R.id.book_rb_1);
+        get_select_rb[2] = (RadioButton) create_layout.findViewById(R.id.book_rb_2);
+        get_select_rb[3] = (RadioButton) create_layout.findViewById(R.id.book_rb_3);
+        get_select_rb[4] = (RadioButton) create_layout.findViewById(R.id.book_rb_4);
+        get_select_rb[5] = (RadioButton) create_layout.findViewById(R.id.book_rb_5);
+        get_select_rb[6] = (RadioButton) create_layout.findViewById(R.id.book_rb_6);
+        get_select_rb[7] = (RadioButton) create_layout.findViewById(R.id.book_rb_7);
+        get_select_rb[8] = (RadioButton) create_layout.findViewById(R.id.book_rb_8);
+
+        select_ok = (Button) create_layout.findViewById(R.id.select_ok);
+        select_cancel = (Button) create_layout.findViewById(R.id.select_cancel);
+    }
+
+    private class ClickListener implements View.OnClickListener{
+
+        public void onClick(View v){
+            String getName = getResources().getResourceName(v.getId());
+            int getNum = Integer.parseInt(getName.substring(getName.length()-1, getName.length()));
+
+            // 체크된 라디오버튼 삭제
+            offTheRadio();
+
+            switch(getNum){
+                case 1:
+                    get_select_rb[1].setChecked(true);
+                    break;
+                case 2:
+                    get_select_rb[2].setChecked(true);
+                    break;
+                case 3:
+                    get_select_rb[3].setChecked(true);
+                    break;
+                case 4:
+                    get_select_rb[4].setChecked(true);
+                    break;
+                case 5:
+                    get_select_rb[5].setChecked(true);
+                    break;
+                case 6:
+                    get_select_rb[6].setChecked(true);
+                    break;
+                case 7:
+                    get_select_rb[7].setChecked(true);
+                    break;
+                case 8:
+                    get_select_rb[8].setChecked(true);
+                    break;
+            }
+
+            rb_index = getNum;
+        }
+    }
+
+    // 체크된 라디오버튼 삭제
+    private void offTheRadio(){
+
+        switch(rb_index){
+            case 1:
+                get_select_rb[1].setChecked(false);
+                break;
+            case 2:
+                get_select_rb[2].setChecked(false);
+                break;
+            case 3:
+                get_select_rb[3].setChecked(false);
+                break;
+            case 4:
+                get_select_rb[4].setChecked(false);
+                break;
+            case 5:
+                get_select_rb[5].setChecked(false);
+                break;
+            case 6:
+                get_select_rb[6].setChecked(false);
+                break;
+            case 7:
+                get_select_rb[7].setChecked(false);
+                break;
+            case 8:
+                get_select_rb[8].setChecked(false);
+                break;
+        }
+    }
+
+    // 팝업창 책 이미지 가져오기
+    private void setBookImage(){
+        switch(rb_index){
+            case 1:
+                bookPhoto.setImageResource(R.drawable.book);
+                break;
+            case 2:
+                bookPhoto.setImageResource(R.drawable.book2);
+                break;
+            case 3:
+                bookPhoto.setImageResource(R.drawable.book3);
+                break;
+            case 4:
+                bookPhoto.setImageResource(R.drawable.book4);
+                break;
+            case 5:
+                bookPhoto.setImageResource(R.drawable.book5);
+                break;
+            case 6:
+                bookPhoto.setImageResource(R.drawable.book6);
+                break;
+            case 7:
+                bookPhoto.setImageResource(R.drawable.book7);
+                break;
+            case 8:
+                bookPhoto.setImageResource(R.drawable.book8);
+                break;
+        }
+
     }
 
     // 갤러리에서 이미지 가져오기
