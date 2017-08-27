@@ -1,5 +1,6 @@
 package droidninja.filepicker.models;
 
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.webkit.MimeTypeMap;
 
@@ -12,7 +13,7 @@ import droidninja.filepicker.utils.Utils;
 /**
  * Created by droidNinja on 29/07/16.
  */
-public class Document extends BaseFile {
+public class Document extends BaseFile implements Comparable<Document>{
     private String mimeType;
     private String size;
     private FileType fileType;
@@ -33,6 +34,11 @@ public class Document extends BaseFile {
         Document document = (Document) o;
 
         return id == document.id;
+    }
+
+    @Override
+    public int compareTo(@NonNull Document other) {
+        return getTitle().compareTo(other.getTitle());
     }
 
     @Override

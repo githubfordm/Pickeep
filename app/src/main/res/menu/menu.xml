@@ -19,4 +19,10 @@
         app:showAsAction="never"
         android:icon="@drawable/main_plus"
         />
+
+    <item android:id="@+id/Name"
+        android:orderInCategory="4"
+        android:title="Sort By Name"
+        app:showAsAction="never"
+        />
 </menu>

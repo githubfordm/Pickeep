@@ -74,6 +74,8 @@ public class BaseFile implements Parcelable{
         this.id = id;
     }
 
+    public String getTitle() { return name; }
+
     @Override
     public int describeContents() {
         return 0;

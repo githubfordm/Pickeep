@@ -178,6 +178,14 @@ public class MainActivity extends AppCompatActivity{
             //button.setImageResource(R.drawable.plus);
             onPickDoc();
         }
+        else if(i == R.id.Name)
+        {
+            if (photoFragment != null)
+            {
+                Log.d("gege","sort in MainActivity");
+                photoFragment.sort("Name");
+            }
+        }
         else if(i == android.R.id.home)
         {
             PickerManager.getInstance().getRemoveDocFiles().clear();  // 혹시 모르니까.
