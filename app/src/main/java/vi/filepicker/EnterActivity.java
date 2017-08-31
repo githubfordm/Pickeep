@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -44,30 +46,30 @@ import permissions.dispatcher.PermissionUtils;
 
 public class EnterActivity extends AppCompatActivity {
 
-    FloatingActionMenu materialDesignFAM;
-    FloatingActionButton floatingActionButton1, floatingActionButton2, floatingActionButton3;
-
-
     private EditText bookName;
     private ImageView bookPhoto;
     private Button folderAdd;
     private RelativeLayout viewGroup;
     private View create_layout;
+    private View select_layout;
     private View delete_layout;
     private PopupWindow create_window;
+    private PopupWindow select_window;
     private PopupWindow delete_window;
     private Bitmap gallery_photo;
     private Bitmap default_photo;
+    private int past_index = 1;
     private int bookCount = 1;
+    private int select_status = 0;
     private String[] bookPath;
     private String dirPath;
     private String folderPath;
+    private String temp_text=""; //사용자가 도중에 작성한 책 제목을 다시 가져온다
 
     //책 이미지 버튼
     private ImageButton button_list[] = new ImageButton[16];
 
     private int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
-    private static final String[] PERMISSION_ONPICKDOC = new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"};
 
     ImageView deskImage;
 
@@ -118,8 +120,7 @@ public class EnterActivity extends AppCompatActivity {
         }
     }
 
-    private void init()
-    {
+    private void init() {
         dirPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/PicKeep/";
 
         directory_pickeep = new File(dirPath);
@@ -141,7 +142,7 @@ public class EnterActivity extends AppCompatActivity {
             text_list[i] = null;
         }
 
-        Log.d("EnterActivity","Init start");
+        Log.d("EnterActivity", "Init start");
         options = new BitmapFactory.Options();
         options.inPreferredConfig = Bitmap.Config.RGB_565;
         options.inSampleSize = 2;
@@ -150,34 +151,47 @@ public class EnterActivity extends AppCompatActivity {
         setList(); // 처음에 로드될 때, 폴더 리스트를 읽어들어와서 보여주도록 배치해주는 초기설정을 담당.
         registerLongClick(); // Long click 이벤트를 각 버튼에 추가하는 초기설정을 ㄷ마당.
         set_popup_create();
+        setSelectBookCreate(); // 책 이미지 설정 팝업창
         set_popup_delete();  // Long click 해서 삭제하려고 할 때 뜨는 팝업의 초기설정을 담당.
-        Log.d("EnterActivity","Init end. all initialization process success!");
+        Log.d("EnterActivity", "Init end. all initialization process success!");
     }
 
-    private void setObjectList()
-    {
-        button_list[1] = (ImageButton) findViewById(R.id.one); text_list[1] = (TextView)findViewById(R.id.textOne);
-        button_list[2] = (ImageButton) findViewById(R.id.two); text_list[2] = (TextView)findViewById(R.id.textTwo);
-        button_list[3] = (ImageButton) findViewById(R.id.three); text_list[3] = (TextView)findViewById(R.id.textThree);
-        button_list[4]  = (ImageButton) findViewById(R.id.four); text_list[4] = (TextView)findViewById(R.id.textFour);
-        button_list[5] = (ImageButton) findViewById(R.id.five); text_list[5] = (TextView)findViewById(R.id.textFive);
-        button_list[6] = (ImageButton) findViewById(R.id.six); text_list[6] = (TextView)findViewById(R.id.textSix);
-        button_list[7] = (ImageButton) findViewById(R.id.seven); text_list[7] = (TextView)findViewById(R.id.textSeven);
-        button_list[8] = (ImageButton) findViewById(R.id.eight); text_list[8] = (TextView)findViewById(R.id.textEight);
-        button_list[9] = (ImageButton) findViewById(R.id.nine); text_list[9] = (TextView)findViewById(R.id.textNine);
-        button_list[10] = (ImageButton) findViewById(R.id.ten); text_list[10] = (TextView)findViewById(R.id.textTen);
-        button_list[11] = (ImageButton) findViewById(R.id.eleven); text_list[11] = (TextView)findViewById(R.id.textEleven);
-        button_list[12] = (ImageButton) findViewById(R.id.twelve); text_list[12] = (TextView)findViewById(R.id.textTwelve);
-        button_list[13] = (ImageButton) findViewById(R.id.thirteen); text_list[13] = (TextView)findViewById(R.id.textThirteen);
-        button_list[14] = (ImageButton) findViewById(R.id.fourteen); text_list[14] = (TextView)findViewById(R.id.textFourteen);
-        Log.d("EnterActivity","Object initialization success");
+    private void setObjectList() {
+        button_list[1] = (ImageButton) findViewById(R.id.one);
+        text_list[1] = (TextView) findViewById(R.id.textOne);
+        button_list[2] = (ImageButton) findViewById(R.id.two);
+        text_list[2] = (TextView) findViewById(R.id.textTwo);
+        button_list[3] = (ImageButton) findViewById(R.id.three);
+        text_list[3] = (TextView) findViewById(R.id.textThree);
+        button_list[4] = (ImageButton) findViewById(R.id.four);
+        text_list[4] = (TextView) findViewById(R.id.textFour);
+        button_list[5] = (ImageButton) findViewById(R.id.five);
+        text_list[5] = (TextView) findViewById(R.id.textFive);
+        button_list[6] = (ImageButton) findViewById(R.id.six);
+        text_list[6] = (TextView) findViewById(R.id.textSix);
+        button_list[7] = (ImageButton) findViewById(R.id.seven);
+        text_list[7] = (TextView) findViewById(R.id.textSeven);
+        button_list[8] = (ImageButton) findViewById(R.id.eight);
+        text_list[8] = (TextView) findViewById(R.id.textEight);
+        button_list[9] = (ImageButton) findViewById(R.id.nine);
+        text_list[9] = (TextView) findViewById(R.id.textNine);
+        button_list[10] = (ImageButton) findViewById(R.id.ten);
+        text_list[10] = (TextView) findViewById(R.id.textTen);
+        button_list[11] = (ImageButton) findViewById(R.id.eleven);
+        text_list[11] = (TextView) findViewById(R.id.textEleven);
+        button_list[12] = (ImageButton) findViewById(R.id.twelve);
+        text_list[12] = (TextView) findViewById(R.id.textTwelve);
+        button_list[13] = (ImageButton) findViewById(R.id.thirteen);
+        text_list[13] = (TextView) findViewById(R.id.textThirteen);
+        button_list[14] = (ImageButton) findViewById(R.id.fourteen);
+        text_list[14] = (TextView) findViewById(R.id.textFourteen);
+        Log.d("EnterActivity", "Object initialization success");
     }
 
-    private void setBackground()
-    {
+    private void setBackground() {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(openFileInput("setting.txt")));
-            if(reader != null) {
+            if (reader != null) {
                 String str = reader.readLine();
                 String setting_list[] = str.split(",");
                 if (setting_list[1] != null) {
@@ -199,30 +213,33 @@ public class EnterActivity extends AppCompatActivity {
                         BACKGROUND_MODE = 4;
                     }
                 }
-                Log.d("EnterActivity","Loading background setting info success");
-            }
-            else
-                Toast.makeText(this,"배경설정을 불러오는데 에러가 발생했습니다.",Toast.LENGTH_LONG).show();
+                Log.d("EnterActivity", "Loading background setting info success");
+            } else
+                Toast.makeText(this, "배경설정을 불러오는데 에러가 발생했습니다.", Toast.LENGTH_LONG).show();
             reader.close();
-        }catch (Throwable t) {}
+        } catch (Throwable t) {
+        }
     }
 
-    private void set_popup_create()
-    {
-        default_photo = BitmapFactory.decodeResource(getResources(),R.drawable.book,options);
+    private void set_popup_create() {
+        if (select_status == 1) {
+            select_window.dismiss();
+            select_status = 0;
+        }
+        default_photo = BitmapFactory.decodeResource(getResources(), R.drawable.book, options);
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        create_layout = inflater.inflate(R.layout.popup_activity, (ViewGroup)findViewById(R.id.popup));
+        create_layout = inflater.inflate(R.layout.popup_activity, (ViewGroup) findViewById(R.id.popup));
         create_window = new PopupWindow(this);
         create_window.setContentView(create_layout);
-        create_window.setWidth(700);
-        create_window.setHeight(1300);
-        create_window.setFocusable(true);
+        create_window.setWidth(800);
+        create_window.setHeight(1320);
 
         bookPhoto = (ImageView) create_layout.findViewById(R.id.getPic);
         // 책 이미지 가져오기
         setBookImage();
         //책이름(EditText)
         bookName = (EditText) create_layout.findViewById(R.id.getTitle);
+        bookName.setText(temp_text);
 
         //사진 선택 버튼
         select_pic = (Button) create_layout.findViewById(R.id.select_pic);
@@ -242,10 +259,13 @@ public class EnterActivity extends AppCompatActivity {
         });
 
         // 책 이미지 선택 버튼 클릭 시 popup창 띄우기
-        select_book.setOnClickListener(new View.OnClickListener(){
+        select_book.setOnClickListener(new View.OnClickListener() {
 
-            public void onClick(View v){
-                set_select_book_create();
+            public void onClick(View v) {
+                temp_text = bookName.getText().toString();
+                past_index = rb_index;
+                get_select_rb[rb_index].setChecked(true);
+                showPopup(EnterActivity.this, 2);
             }
         });
 
@@ -254,7 +274,7 @@ public class EnterActivity extends AppCompatActivity {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(bookCount <= 14) {
+                if (bookCount <= 14) {
                     if (bookName.getText().toString().length() == 0) // 책 제목을 넣지 않았다면,
                         Toast.makeText(getApplicationContext(), "책 제목을 입력하세요.", Toast.LENGTH_LONG).show();
                     else if (isContain(bookName.getText().toString()))
@@ -263,24 +283,28 @@ public class EnterActivity extends AppCompatActivity {
                         File new_folder = new File(dirPath + "/" + bookName.getText().toString());
                         if (!new_folder.exists()) {
                             new_folder.mkdir();
-                            if (gallery_photo != null) {
-                                String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/PicKeep/"
-                                        + bookName.getText().toString() + "/" +
-                                        bookName.getText().toString() + ".png";
+                            String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/PicKeep/"
+                                    + bookName.getText().toString() + "/" +
+                                    bookName.getText().toString() + ".png";
+                            if (gallery_photo != null)
                                 storeCropImage(gallery_photo, filePath);
-                                gallery_photo = null;
+                            else {
+                                getDefaultBitmap();
+                                storeCropImage(default_photo, filePath);
                             }
-                            bookPhoto.setImageBitmap(default_photo);  // popup 창 나가기전에 기본 이미지로 다시 세팅해놓고 나감(다음을 위해)
+                            rb_index=1;
+                            getDefaultBitmap();
+                            bookPhoto.setImageBitmap(default_photo);
+                            gallery_photo = null;
                             create_window.dismiss();
                             folderPath = new_folder.getPath();
                             scanning(bookCount, folderPath);
                             bookCount++;
                             bookName.setText("");
-                            Log.d("EnterActivity","Folder creation success!");
+                            Log.d("EnterActivity", "Folder creation success!");
                         }
                     }
-                }
-                else if(bookCount > 14){
+                } else if (bookCount > 14) {
                     Toast.makeText(getApplicationContext(), "책장이 가득 찼습니다.", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -290,12 +314,12 @@ public class EnterActivity extends AppCompatActivity {
         Button search;
         search = (Button) create_layout.findViewById(R.id.search);
 
-        search.setOnClickListener(new View.OnClickListener(){
+        search.setOnClickListener(new View.OnClickListener() {
 
-            public void onClick(View V){
+            public void onClick(View V) {
                 if (bookName.getText().toString().length() == 0) // 책 제목을 넣지 않았다면,
                     Toast.makeText(getApplicationContext(), "책 제목을 입력한 후 검색하세요.", Toast.LENGTH_LONG).show();
-                else{
+                else {
                     String getUri = "https://www.google.com/search?tbm=isch&q=" + bookName.getText();
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getUri));
                     startActivity(intent);
@@ -307,6 +331,9 @@ public class EnterActivity extends AppCompatActivity {
         cancel = (Button) create_layout.findViewById(R.id.cancel);
         cancel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                rb_index = 1;
+                setBookImage();
+                bookName.setText("");
                 create_window.dismiss();
             }
         });
@@ -316,83 +343,80 @@ public class EnterActivity extends AppCompatActivity {
         //메인화면에서 +버튼을 누를 경우 실행됨
         folderAdd.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                showPopup(EnterActivity.this);
+                showPopup(EnterActivity.this, 1);
             }
         });
-
-        materialDesignFAM = (FloatingActionMenu) findViewById(R.id.material_design_android_floating_action_menu);
-        floatingActionButton1 = (FloatingActionButton) findViewById(R.id.material_design_floating_action_menu_item1);
-        floatingActionButton2 = (FloatingActionButton) findViewById(R.id.material_design_floating_action_menu_item2);
-        floatingActionButton3 = (FloatingActionButton) findViewById(R.id.material_design_floating_action_menu_item3);
-
-        floatingActionButton1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //TODO something when floating action menu first item clicked
-
-            }
-        });
-        floatingActionButton2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //TODO something when floating action menu second item clicked
-
-            }
-        });
-        floatingActionButton3.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //TODO something when floating action menu third item clicked
-
-            }
-        });
-
-
     }
-    // '+'버튼 누를 시 팝업창이 띄어진다.
-    public void showPopup(final Activity context) {
-        //팝업창의 위치
-        int OFFSET_X = 30;
-        int OFFSET_Y = 30;
 
-        if(create_window != null) {
-            create_window.setFocusable(true);
-            create_window.showAtLocation(create_layout, Gravity.CENTER, OFFSET_X, OFFSET_Y);
+    // '+'버튼 누를 시 팝업창이 띄어진다.
+    public void showPopup(final Activity context, int mode) {
+        //팝업창의 위치
+        int OFFSET_X = 0;
+        int OFFSET_Y = 0;
+
+        // '+'버튼 누를 시 팝업창 뜨게함
+        if(mode==1) {
+            if (create_window != null) {
+                if (select_window != null) {
+                    select_window.dismiss();
+                }
+                create_window.setFocusable(true);
+                create_window.showAtLocation(create_layout, Gravity.CENTER, OFFSET_X, OFFSET_Y);
+            }
+        }
+
+        // 책 이미지 선택 누를 시 팝업창 뜨게함
+        else if(mode==2){
+            select_window.setFocusable(true);
+            select_window.showAtLocation(select_layout, Gravity.CENTER, OFFSET_X, OFFSET_Y);
         }
     }
 
     // 책 이미지 팝업창 띄우기
-    private void set_select_book_create(){
-
+    private void setSelectBookCreate() {
         LayoutInflater infalter = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        create_layout = infalter.inflate(R.layout.popup_select_book, (ViewGroup)findViewById(R.id.select_book_popup));
-        create_window = new PopupWindow(this);
-        create_window.setContentView(create_layout);
-        create_window.setWidth(800);
-        create_window.setHeight(500);
-        create_window.setFocusable(true);
+        select_layout = infalter.inflate(R.layout.popup_select_book, (ViewGroup) findViewById(R.id.select_book_popup));
+        select_window = new PopupWindow(this);
+        select_window.setContentView(select_layout);
+        select_window.setWidth(800);
+        select_window.setHeight(1300);
 
-        setSelectId();
+        setSelectId(select_layout);
 
         // 사용자가 이미지 눌렀을 시 라디오버튼 check되게 한다
-        get_select_iv[1].setOnClickListener(mClickListener); get_select_ll[1].setOnClickListener(mClickListener);
-        get_select_iv[2].setOnClickListener(mClickListener); get_select_ll[2].setOnClickListener(mClickListener);
-        get_select_iv[3].setOnClickListener(mClickListener); get_select_ll[3].setOnClickListener(mClickListener);
-        get_select_iv[4].setOnClickListener(mClickListener); get_select_ll[4].setOnClickListener(mClickListener);
-        get_select_iv[5].setOnClickListener(mClickListener); get_select_ll[5].setOnClickListener(mClickListener);
-        get_select_iv[6].setOnClickListener(mClickListener); get_select_ll[6].setOnClickListener(mClickListener);
-        get_select_iv[7].setOnClickListener(mClickListener); get_select_ll[7].setOnClickListener(mClickListener);
-        get_select_iv[8].setOnClickListener(mClickListener); get_select_ll[8].setOnClickListener(mClickListener);
+        get_select_iv[1].setOnClickListener(mClickListener);
+        get_select_ll[1].setOnClickListener(mClickListener);
+        get_select_iv[2].setOnClickListener(mClickListener);
+        get_select_ll[2].setOnClickListener(mClickListener);
+        get_select_iv[3].setOnClickListener(mClickListener);
+        get_select_ll[3].setOnClickListener(mClickListener);
+        get_select_iv[4].setOnClickListener(mClickListener);
+        get_select_ll[4].setOnClickListener(mClickListener);
+        get_select_iv[5].setOnClickListener(mClickListener);
+        get_select_ll[5].setOnClickListener(mClickListener);
+        get_select_iv[6].setOnClickListener(mClickListener);
+        get_select_ll[6].setOnClickListener(mClickListener);
+        get_select_iv[7].setOnClickListener(mClickListener);
+        get_select_ll[7].setOnClickListener(mClickListener);
+        get_select_iv[8].setOnClickListener(mClickListener);
+        get_select_ll[8].setOnClickListener(mClickListener);
 
 
-        select_ok.setOnClickListener(new View.OnClickListener(){
+        select_ok.setOnClickListener(new View.OnClickListener() {
 
-            public void onClick(View v){
-                set_popup_create();
+            public void onClick(View v) {
+                setBookImage();
+                offTheRadio();
+                showPopup(EnterActivity.this, 1);
             }
         });
 
-        select_cancel.setOnClickListener(new View.OnClickListener(){
+        select_cancel.setOnClickListener(new View.OnClickListener() {
 
-            public void onClick(View v){
-                set_popup_create();
+            public void onClick(View v) {
+                rb_index = past_index;
+                offTheRadio();
+                showPopup(EnterActivity.this, 1);
             }
 
         });
@@ -400,113 +424,64 @@ public class EnterActivity extends AppCompatActivity {
     }
 
     // 책 이미지 팝업창 아이디 부여
-    private void setSelectId(){
+    private void setSelectId(View select_context) {
 
-        get_select_iv[1] = (ImageView) create_layout.findViewById(R.id.book_iv_1);
-        get_select_iv[2] = (ImageView) create_layout.findViewById(R.id.book_iv_2);
-        get_select_iv[3] = (ImageView) create_layout.findViewById(R.id.book_iv_3);
-        get_select_iv[4] = (ImageView) create_layout.findViewById(R.id.book_iv_4);
-        get_select_iv[5] = (ImageView) create_layout.findViewById(R.id.book_iv_5);
-        get_select_iv[6] = (ImageView) create_layout.findViewById(R.id.book_iv_6);
-        get_select_iv[7] = (ImageView) create_layout.findViewById(R.id.book_iv_7);
-        get_select_iv[8] = (ImageView) create_layout.findViewById(R.id.book_iv_8);
+        get_select_iv[1] = (ImageView) select_context.findViewById(R.id.book_iv_1);
+        get_select_iv[2] = (ImageView) select_context.findViewById(R.id.book_iv_2);
+        get_select_iv[3] = (ImageView) select_context.findViewById(R.id.book_iv_3);
+        get_select_iv[4] = (ImageView) select_context.findViewById(R.id.book_iv_4);
+        get_select_iv[5] = (ImageView) select_context.findViewById(R.id.book_iv_5);
+        get_select_iv[6] = (ImageView) select_context.findViewById(R.id.book_iv_6);
+        get_select_iv[7] = (ImageView) select_context.findViewById(R.id.book_iv_7);
+        get_select_iv[8] = (ImageView) select_context.findViewById(R.id.book_iv_8);
 
-        get_select_ll[1] = (LinearLayout) create_layout.findViewById(R.id.book_rb_ll_1);
-        get_select_ll[2] = (LinearLayout) create_layout.findViewById(R.id.book_rb_ll_2);
-        get_select_ll[3] = (LinearLayout) create_layout.findViewById(R.id.book_rb_ll_3);
-        get_select_ll[4] = (LinearLayout) create_layout.findViewById(R.id.book_rb_ll_4);
-        get_select_ll[5] = (LinearLayout) create_layout.findViewById(R.id.book_rb_ll_5);
-        get_select_ll[6] = (LinearLayout) create_layout.findViewById(R.id.book_rb_ll_6);
-        get_select_ll[7] = (LinearLayout) create_layout.findViewById(R.id.book_rb_ll_7);
-        get_select_ll[8] = (LinearLayout) create_layout.findViewById(R.id.book_rb_ll_8);
+        get_select_ll[1] = (LinearLayout) select_context.findViewById(R.id.book_rb_ll_1);
+        get_select_ll[2] = (LinearLayout) select_context.findViewById(R.id.book_rb_ll_2);
+        get_select_ll[3] = (LinearLayout) select_context.findViewById(R.id.book_rb_ll_3);
+        get_select_ll[4] = (LinearLayout) select_context.findViewById(R.id.book_rb_ll_4);
+        get_select_ll[5] = (LinearLayout) select_context.findViewById(R.id.book_rb_ll_5);
+        get_select_ll[6] = (LinearLayout) select_context.findViewById(R.id.book_rb_ll_6);
+        get_select_ll[7] = (LinearLayout) select_context.findViewById(R.id.book_rb_ll_7);
+        get_select_ll[8] = (LinearLayout) select_context.findViewById(R.id.book_rb_ll_8);
 
-        get_select_rb[1] = (RadioButton) create_layout.findViewById(R.id.book_rb_1);
-        get_select_rb[2] = (RadioButton) create_layout.findViewById(R.id.book_rb_2);
-        get_select_rb[3] = (RadioButton) create_layout.findViewById(R.id.book_rb_3);
-        get_select_rb[4] = (RadioButton) create_layout.findViewById(R.id.book_rb_4);
-        get_select_rb[5] = (RadioButton) create_layout.findViewById(R.id.book_rb_5);
-        get_select_rb[6] = (RadioButton) create_layout.findViewById(R.id.book_rb_6);
-        get_select_rb[7] = (RadioButton) create_layout.findViewById(R.id.book_rb_7);
-        get_select_rb[8] = (RadioButton) create_layout.findViewById(R.id.book_rb_8);
+        get_select_rb[1] = (RadioButton) select_context.findViewById(R.id.book_rb_1);
+        get_select_rb[2] = (RadioButton) select_context.findViewById(R.id.book_rb_2);
+        get_select_rb[3] = (RadioButton) select_context.findViewById(R.id.book_rb_3);
+        get_select_rb[4] = (RadioButton) select_context.findViewById(R.id.book_rb_4);
+        get_select_rb[5] = (RadioButton) select_context.findViewById(R.id.book_rb_5);
+        get_select_rb[6] = (RadioButton) select_context.findViewById(R.id.book_rb_6);
+        get_select_rb[7] = (RadioButton) select_context.findViewById(R.id.book_rb_7);
+        get_select_rb[8] = (RadioButton) select_context.findViewById(R.id.book_rb_8);
 
-        select_ok = (Button) create_layout.findViewById(R.id.select_ok);
-        select_cancel = (Button) create_layout.findViewById(R.id.select_cancel);
+        select_ok = (Button) select_context.findViewById(R.id.select_ok);
+        select_cancel = (Button) select_context.findViewById(R.id.select_cancel);
     }
 
-    private class ClickListener implements View.OnClickListener{
+    private class ClickListener implements View.OnClickListener {
 
-        public void onClick(View v){
+        public void onClick(View v) {
             String getName = getResources().getResourceName(v.getId());
-            int getNum = Integer.parseInt(getName.substring(getName.length()-1, getName.length()));
+            int getNum = Integer.parseInt(getName.substring(getName.length() - 1, getName.length()));
 
             // 체크된 라디오버튼 삭제
             offTheRadio();
 
-            switch(getNum){
-                case 1:
-                    get_select_rb[1].setChecked(true);
-                    break;
-                case 2:
-                    get_select_rb[2].setChecked(true);
-                    break;
-                case 3:
-                    get_select_rb[3].setChecked(true);
-                    break;
-                case 4:
-                    get_select_rb[4].setChecked(true);
-                    break;
-                case 5:
-                    get_select_rb[5].setChecked(true);
-                    break;
-                case 6:
-                    get_select_rb[6].setChecked(true);
-                    break;
-                case 7:
-                    get_select_rb[7].setChecked(true);
-                    break;
-                case 8:
-                    get_select_rb[8].setChecked(true);
-                    break;
-            }
-
+            get_select_rb[getNum].setChecked(true);
             rb_index = getNum;
         }
     }
 
     // 체크된 라디오버튼 삭제
-    private void offTheRadio(){
+    private void offTheRadio() {
 
-        switch(rb_index){
-            case 1:
-                get_select_rb[1].setChecked(false);
-                break;
-            case 2:
-                get_select_rb[2].setChecked(false);
-                break;
-            case 3:
-                get_select_rb[3].setChecked(false);
-                break;
-            case 4:
-                get_select_rb[4].setChecked(false);
-                break;
-            case 5:
-                get_select_rb[5].setChecked(false);
-                break;
-            case 6:
-                get_select_rb[6].setChecked(false);
-                break;
-            case 7:
-                get_select_rb[7].setChecked(false);
-                break;
-            case 8:
-                get_select_rb[8].setChecked(false);
-                break;
+        for(int i=1; i<=8; i++){
+            get_select_rb[i].setChecked(false);
         }
     }
 
     // 팝업창 책 이미지 가져오기
-    private void setBookImage(){
-        switch(rb_index){
+    private void setBookImage() {
+        switch (rb_index) {
             case 1:
                 bookPhoto.setImageResource(R.drawable.book);
                 break;
@@ -535,6 +510,36 @@ public class EnterActivity extends AppCompatActivity {
 
     }
 
+    private void getDefaultBitmap(){
+        switch (rb_index){
+            case 1:
+                default_photo = BitmapFactory.decodeResource(getResources(), R.drawable.book, options);
+                break;
+            case 2:
+                default_photo = BitmapFactory.decodeResource(getResources(), R.drawable.book2, options);
+                break;
+            case 3:
+                default_photo = BitmapFactory.decodeResource(getResources(), R.drawable.book3, options);
+                break;
+            case 4:
+                default_photo = BitmapFactory.decodeResource(getResources(), R.drawable.book4, options);
+                break;
+            case 5:
+                default_photo = BitmapFactory.decodeResource(getResources(), R.drawable.book5, options);
+                break;
+            case 6:
+                default_photo = BitmapFactory.decodeResource(getResources(), R.drawable.book6, options);
+                break;
+            case 7:
+                default_photo = BitmapFactory.decodeResource(getResources(), R.drawable.book7, options);
+                break;
+            case 8:
+                default_photo = BitmapFactory.decodeResource(getResources(), R.drawable.book8, options);
+                break;
+        }
+
+    }
+
     // 갤러리에서 이미지 가져오기
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -549,7 +554,7 @@ public class EnterActivity extends AppCompatActivity {
 
             // 가져온 이미지를 원하는 크기로 자르기
             case 0:
-                Log.d("EnterActivity","Image load from gallery success");
+                Log.d("EnterActivity", "Image load from gallery success");
                 Intent intent = new Intent("com.android.camera.action.CROP");
                 intent.setDataAndType(getUri, "image/*");
 
@@ -568,7 +573,7 @@ public class EnterActivity extends AppCompatActivity {
                 if (resultCode != RESULT_OK)
                     return;
 
-                Log.d("EnterActivity","Image crop success!");
+                Log.d("EnterActivity", "Image crop success!");
                 final Bundle extras = data.getExtras();
 
                 // 이미지를 저장하기 위한 파일 경로
@@ -597,15 +602,20 @@ public class EnterActivity extends AppCompatActivity {
                 String outName = data.getStringExtra("name");
                 if (outName != null) {
                     if (outName.equals("blue_modify")) {
-                        deskImage.setImageResource(R.drawable.blue_modify); BACKGROUND_MODE = 0;
+                        deskImage.setImageResource(R.drawable.blue_modify);
+                        BACKGROUND_MODE = 0;
                     } else if (outName.equals("bright_tree_modify")) {
-                        deskImage.setImageResource(R.drawable.bright_tree_modify); BACKGROUND_MODE = 1;
+                        deskImage.setImageResource(R.drawable.bright_tree_modify);
+                        BACKGROUND_MODE = 1;
                     } else if (outName.equals("green_modify")) {
-                        deskImage.setImageResource(R.drawable.green_modify); BACKGROUND_MODE = 2;
+                        deskImage.setImageResource(R.drawable.green_modify);
+                        BACKGROUND_MODE = 2;
                     } else if (outName.equals("red_modify")) {
-                        deskImage.setImageResource(R.drawable.red_modify); BACKGROUND_MODE = 3;
+                        deskImage.setImageResource(R.drawable.red_modify);
+                        BACKGROUND_MODE = 3;
                     } else if (outName.equals("tree_modify")) {
-                        deskImage.setImageResource(R.drawable.tree_modify); BACKGROUND_MODE = 4;
+                        deskImage.setImageResource(R.drawable.tree_modify);
+                        BACKGROUND_MODE = 4;
                     }
                 }
                 break;
@@ -631,8 +641,9 @@ public class EnterActivity extends AppCompatActivity {
         int id = view.getId();
         int index = getIndex(id);
         Intent intent = new Intent(this, MainActivity.class);
-        if(bookPath[index] != null){
-            intent.putExtra("path",bookPath[index]+"/");}
+        if (bookPath[index] != null) {
+            intent.putExtra("path", bookPath[index] + "/");
+        }
         startActivity(intent);
     }
 
@@ -649,7 +660,7 @@ public class EnterActivity extends AppCompatActivity {
         int curId = item.getItemId();
         switch (curId) {
             case R.id.menu_edit:
-                Intent intent = new Intent(this,EditsActivity.class);
+                Intent intent = new Intent(this, EditsActivity.class);
                 startActivityForResult(intent, 30);
                 break;
             case R.id.menu_exit:
@@ -665,14 +676,14 @@ public class EnterActivity extends AppCompatActivity {
         File files = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/PicKeep/");
         File[] list = files.listFiles();
         int size = files.listFiles().length;
-        if(size != 0 && size < 15) {
+        if (size != 0 && size < 15) {
             Log.i("zxc", "size = " + size);
             for (int i = 0; i < size; i++) {
                 String title = getTitleFromPath(list[i].getPath());
                 scanning(i + 1, list[i].getPath());
             }
             bookCount = size + 1;
-            Log.d("EnterActivity","Loading folder list success. current folder count = "+bookCount);
+            Log.d("EnterActivity", "Loading folder list success. current folder count = " + bookCount);
         }
     }
 
@@ -683,8 +694,7 @@ public class EnterActivity extends AppCompatActivity {
 
     //
     private void scanning(int bookCount, String folderPath) {
-        if (folderPath != null)
-        {
+        if (folderPath != null) {
             button_list[bookCount].setVisibility(View.VISIBLE);
             bookPath[bookCount] = folderPath;
             setImageOnButton(bookCount);
@@ -693,17 +703,16 @@ public class EnterActivity extends AppCompatActivity {
         }
     }
 
-    private void setImageOnButton(int index)
-    {
-        String img_path = bookPath[index] +"/"+ getTitleFromPath(bookPath[index]) +".png";
-        try
-        {
+    private void setImageOnButton(int index) {
+        String img_path = bookPath[index] + "/" + getTitleFromPath(bookPath[index]) + ".png";
+        try {
             File img_file = new File(img_path);
-            if(img_file.exists()) {
-                Bitmap src = BitmapFactory.decodeFile(img_path,options);
+            if (img_file.exists()) {
+                Bitmap src = BitmapFactory.decodeFile(img_path, options);
                 button_list[index].setImageBitmap(src);
             }
-        }catch (Throwable t) {}
+        } catch (Throwable t) {
+        }
     }
 
     private void deleteFolder(String path) // 삭제하려는 폴더의 경로를 받아올 것.
@@ -738,28 +747,27 @@ public class EnterActivity extends AppCompatActivity {
         } else
             Toast.makeText(this, "Error : Please contact with developer", Toast.LENGTH_LONG).show();
     }
+
     private void set_popup_delete()  // 팝업창이 뜰 때마다 layout을 불러들이는 비용을 줄였음.
     {
-        if(delete_layout == null)
-        {
+        if (delete_layout == null) {
             ViewGroup viewGroup = (RelativeLayout) findViewById(R.id.popup_delete);
             LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
             delete_layout = inflater.inflate(R.layout.popup_delete, viewGroup);
-
             delete_window = new PopupWindow(this);
             delete_window.setContentView(delete_layout);
-            delete_window.setWidth(500);
-            delete_window.setHeight(500);
+            delete_window.getHeight();
+            delete_window.getWidth();
             delete_window.setFocusable(true);
 
-            ok_btn = (Button)delete_layout.findViewById(R.id.ok);
-            cancel_btn = (Button)delete_layout.findViewById(R.id.cancel);
+            ok_btn = (Button) delete_layout.findViewById(R.id.ok);
+            cancel_btn = (Button) delete_layout.findViewById(R.id.cancel);
 
-            ok_btn.setOnClickListener(new View.OnClickListener(){
+            ok_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     deleteFolder(bookPath[index]);
-                    Toast.makeText(getApplicationContext(),"index : "+index+"",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "index : " + index + "", Toast.LENGTH_SHORT).show();
                     bookPath[index] = null;
                     deleteObject.setVisibility(View.INVISIBLE);
                     text_list[index].setText(""); // 폴더 삭제시 이름도 초기화
@@ -769,8 +777,7 @@ public class EnterActivity extends AppCompatActivity {
                 }
             });
 
-            cancel_btn.setOnClickListener(new View.OnClickListener()
-            {
+            cancel_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     delete_window.dismiss();
@@ -778,70 +785,75 @@ public class EnterActivity extends AppCompatActivity {
             });
         }
     }
-    public void popup_delete(View v)
-    {
+
+    public void popup_delete(View v) {
         index = getIndex(v.getId());
         deleteObject = v;
 
-        if(delete_layout == null) {
-            Toast.makeText(this,"popup delete is null",Toast.LENGTH_LONG).show();
-        }
-        else {
-            delete_window.showAtLocation(delete_layout, Gravity.CENTER, 30, 30);
+        if (delete_layout == null) {
+            Toast.makeText(this, "popup delete is null", Toast.LENGTH_LONG).show();
+        } else {
+            delete_window.showAtLocation(delete_layout, Gravity.CENTER, 0, 0);
             //delete_window.showAtLocation(delete_layout, Gravity.CENTER, 30, 30);
         }
     }
 
-    private int getIndex(int id)
-    {
-        switch(id)
-        {
-            case R.id.one : return 1;
-            case R.id.two : return 2;
-            case R.id.three : return 3;
-            case R.id.four : return 4;
-            case R.id.five : return 5;
-            case R.id.six : return 6;
-            case R.id.seven : return 7;
-            case R.id.eight : return 8;
-            case R.id.nine : return 9;
-            case R.id.ten : return 10;
-            case R.id.eleven : return 11;
-            case R.id.twelve : return 12;
-            case R.id.thirteen : return 13;
-            case R.id.fourteen : return 14;
+    private int getIndex(int id) {
+        switch (id) {
+            case R.id.one:
+                return 1;
+            case R.id.two:
+                return 2;
+            case R.id.three:
+                return 3;
+            case R.id.four:
+                return 4;
+            case R.id.five:
+                return 5;
+            case R.id.six:
+                return 6;
+            case R.id.seven:
+                return 7;
+            case R.id.eight:
+                return 8;
+            case R.id.nine:
+                return 9;
+            case R.id.ten:
+                return 10;
+            case R.id.eleven:
+                return 11;
+            case R.id.twelve:
+                return 12;
+            case R.id.thirteen:
+                return 13;
+            case R.id.fourteen:
+                return 14;
         }
         return 0;
     }
 
-    private void registerLongClick()
-    {
-        listener = new View.OnLongClickListener()
-        {
+    private void registerLongClick() {
+        listener = new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 popup_delete(v);
                 return true;
             }
         };
-        for(int i=1; i<15; i++)
+        for (int i = 1; i < 15; i++)
             button_list[i].setOnLongClickListener(listener);
     }
 
-    private void re_arrange(int from)
-    {
-        Log.i("delete","index "+from+"부터 re_arrange를 시작");
-        for(int front = from; front<= 13; front++) // front는 14까지가 한계
+    private void re_arrange(int from) {
+        Log.i("delete", "index " + from + "부터 re_arrange를 시작");
+        for (int front = from; front <= 13; front++) // front는 14까지가 한계
         {
-            if(bookPath[front] == null)
-            {
-                Log.i("delete","index "+front+"가 null임 뒤에를 찾아보자");
-                for (int back = front + 1; back <= 14; back++)
-                {
-                    if (bookPath[back] != null)
-                    {
-                        Log.i("delete","index "+back+"을 뒤에서 발견함.");
-                        scanning(front,bookPath[back]);  // front 위치를 업데이트 한다.
+            if (bookPath[front] == null) {
+                Log.i("delete", "index " + front + "가 null임 뒤에를 찾아보자");
+                for (int back = front + 1; back <= 14; back++) {
+                    if (bookPath[back] != null) {
+                        Log.i("delete", "index " + back + "을 뒤에서 발견함.");
+                        scanning(front, bookPath[back]);  // front 위치를 업데이트 한다.
                         bookPath[front] = bookPath[back];
                         bookPath[back] = null;
                         text_list[back].setText("");
@@ -857,27 +869,25 @@ public class EnterActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        try{
-            OutputStreamWriter out = new OutputStreamWriter(openFileOutput("setting.txt",MODE_PRIVATE));
-            out.write("Background,"+BACKGROUND_MODE);
+        try {
+            OutputStreamWriter out = new OutputStreamWriter(openFileOutput("setting.txt", MODE_PRIVATE));
+            out.write("Background," + BACKGROUND_MODE);
             out.close();
-        }catch(Throwable t) {}
+        } catch (Throwable t) {
+        }
     }
 
-    private boolean isContain(String title)
-    {
+    private boolean isContain(String title) {
         File files = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/PicKeep/");
         File[] list = files.listFiles();
-        for(int i=0; i<list.length; i++)
-        {
-            if(getTitleFromPath(list[i].getPath()).equals(title))
+        for (int i = 0; i < list.length; i++) {
+            if (getTitleFromPath(list[i].getPath()).equals(title))
                 return true;
         }
         return false;
     }
 
-    public int getCount()
-    {
+    public int getCount() {
         return bookCount;
     }
 }

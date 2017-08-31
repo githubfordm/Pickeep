@@ -2,15 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/popup_delete">
+    android:id="@+id/popup_delete"
+    android:background="#ffffff">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="정말 삭제할꺼야?"
+        android:text=" 정말 삭제할꺼야?"
         android:textSize="20dp"
         android:layout_gravity="center_horizontal"
         android:layout_margin="20dp"
+        android:drawableLeft="@drawable/warning"
         android:id="@+id/question"/>
 
     <Button
@@ -19,13 +21,16 @@
         android:text="OK"
         android:id="@+id/ok"
         android:layout_below="@+id/question"
-        android:layout_toLeftOf="@+id/cancel"/>
+        android:layout_toLeftOf="@+id/cancel"
+        android:layout_marginBottom="5dp"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CANCEL"
+        android:layout_marginRight="20dp"
         android:id="@+id/cancel"
         android:layout_below="@+id/question"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="5dp"/>
 
 </RelativeLayout>
