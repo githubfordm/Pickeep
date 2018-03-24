@@ -135,4 +135,22 @@ public class DocMainFragment extends BaseFragment {
         };
         return new ArrayList<>(Utils.filter(new HashSet<>(documents),docType));
     }
+
+    public void sort(String type)
+    {
+        Log.d("gege","enterence in DocMainFragemnt");
+        SectionsPagerAdapter sectionsPagerAdapter = (SectionsPagerAdapter)viewPager.getAdapter();
+        if(sectionsPagerAdapter!= null)
+        {
+            for (int index = 0; index <= sectionsPagerAdapter.getCount(); index++) {
+                DocFragment docFragment = (DocFragment) getChildFragmentManager()
+                        .findFragmentByTag(
+                                "android:switcher:" + R.id.viewPager + ":" + index);
+                if (docFragment != null) {
+                    Log.d("gege", "sort in DocMainFragement");
+                    docFragment.sortBy(type);
+                }
+            }
+        }
+    }
 }

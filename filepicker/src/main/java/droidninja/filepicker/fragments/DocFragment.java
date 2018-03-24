@@ -24,6 +24,7 @@ public class DocFragment extends BaseFragment {
 
     private static final String TAG = DocFragment.class.getSimpleName();
     private static final String tag = "DocFragment";
+    private static final String[] SORT_LIST = {"Name","Date","Size"};
     RecyclerView recyclerView;
 
     TextView emptyView;
@@ -99,7 +100,7 @@ public class DocFragment extends BaseFragment {
             recyclerView.setVisibility(View.VISIBLE);
             emptyView.setVisibility(View.GONE);
 
-            FileListAdapter fileListAdapter = (FileListAdapter) recyclerView.getAdapter();
+            fileListAdapter = (FileListAdapter) recyclerView.getAdapter();
             if(fileListAdapter==null) {
                 fileListAdapter = new FileListAdapter(getActivity(), dirs, PickerManager.getInstance().getSelectedFiles());
 
@@ -118,4 +119,19 @@ public class DocFragment extends BaseFragment {
         }
     }
 
+    public void sortBy(String type)
+    {
+        Log.d("gege","Enterence in DocFragement");
+        if (fileListAdapter != null)
+        {
+            for (int i = 0; i < SORT_LIST.length; i++) {
+                if (SORT_LIST[i] == type) {
+                    Log.d("gege", "sort in DocFragment");
+                    fileListAdapter.sort(i);
+                    break;
+                }
+            }
+            fileListAdapter.notifyDataSetChanged();
+        }
+    }
 }

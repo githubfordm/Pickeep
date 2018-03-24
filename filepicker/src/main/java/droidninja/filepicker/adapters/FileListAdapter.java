@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import droidninja.filepicker.FilePickerConst;
@@ -129,20 +130,16 @@ public class FileListAdapter extends SelectableAdapter<FileListAdapter.FileViewH
         }
     }
 
-    private void cleanAll()
+    public void sort(int index)
     {
-        int size = getItems().size();
-        for(int i=0; i<size; i++)
-        {
-            Document document = getItems().get(i);
-
-        }
+        Log.d("gege","sort in FileLIstAdapter");
+        Collections.sort(getItems());
     }
 
     @Override
     public int getItemCount() {
         return getItems().size();
-    }
+    }  // 현재 확장자 리스트 파일 갯수 리턴
 
     public static class FileViewHolder extends RecyclerView.ViewHolder {
         SmoothCheckBox checkBox;

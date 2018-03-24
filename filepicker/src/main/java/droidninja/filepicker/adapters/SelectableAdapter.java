@@ -29,8 +29,8 @@ public abstract class SelectableAdapter<VH extends RecyclerView.ViewHolder, T ex
 
     for (int index = 0; index < items.size(); index++) {
       for (int jindex = 0; jindex < selectedPaths.size(); jindex++) {
-        if(items.get(index).getPath().equals(selectedPaths.get(jindex)))
-        {
+        if(items.get(index).getPath().equals(selectedPaths.get(jindex)))  //filter해서 넘어온 List<Document> items와 PickerManager가 가지고 있는 선택된 파일들과 마지막으로 비교해서 집어넣는거
+        {                                                          // PickerManager가 가지고있는 List<String>이 items보다 무조건 크거나 같겠지.(얘는 다른 형식 리스트도 가지고 있으니까)
           selectedPhotos.add(items.get(index));
         }
       }
