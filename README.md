@@ -1,9 +1,7 @@
 # Pickeep
 
 ![Alt text](/path/to/pickeep.jpg)
-
-<br><br>
-Manage your document with beautiful shelf specially made for you!
+Manage your document with beautiful shelf 'specially' made for you!
 <br><br><br>
 *Pickeep Ver 1.5*<br>
 <br>
