@@ -1,0 +1,23 @@
+
+…squid:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(–­æ¾
+Msquid:S1068"8Remove this unused "alreadySelectedFiles" private field.(şÖÛó
+…squid:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ÚÎß
+7squid:S1659"#Declare "count" on a separate line.(ê¦ãH
+Isquid:S1066"/Merge this if statement with the enclosing one.(¹ÖÊĞûÿÿÿÿ
+Zsquid:UselessImportCheck"3Remove this unused import 'android.os.Environment'.(É¿‹Ãûÿÿÿÿ
+jsquid:S00116"ORename this field "Mode" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğïĞˆşÿÿÿÿ
+dsquid:UnusedPrivateMethod"<Remove this unused private "broadCastToMediaScanner" method.(¯ Î®ÿÿÿÿÿ
+bsquid:S1192"HDefine a constant instead of duplicating this literal "Manager" 4 times.(İ„Ô½øÿÿÿÿ
+dsquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûÅ¦
+dsquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”›
+msquid:UselessImportCheck"FRemove this unused import 'droidninja.filepicker.utils.DMediaScanner'.(Ğ˜àúûÿÿÿÿ
+esquid:UselessImportCheck">Remove this unused import 'droidninja.filepicker.utils.Utils'.(ãìÍÇıÿÿÿÿ
+…squid:S1319"pThe type of the "paths" object should be an interface such as "List" rather than the implementation "ArrayList".(È­˜
+isquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜ÒÜùÿÿÿÿ
+>squid:S1481"*Remove this unused "count" local variable.(ê¦ãH
+csquid:S4042"IUse "java.nio.Files#delete" here for better messages on error conditions.(û«İøøÿÿÿÿ
+Šsquid:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ÿÑ±¯üÿÿÿÿ
+hsquid:UselessImportCheck"ARemove this unused import 'android.media.MediaScannerConnection'.(•ûîıúÿÿÿÿ
+Šsquid:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ÿÃ„Úúÿÿÿÿ
+…squid:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(¦â½ÿ
+Šsquid:S1319"pThe type of the "files" object should be an interface such as "List" rather than the implementation "ArrayList".(ÿÃ„Úúÿÿÿÿ

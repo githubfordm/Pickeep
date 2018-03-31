@@ -1,0 +1,14 @@
+
+esquid:S1192"KDefine a constant instead of duplicating this literal "FilePicker" 6 times.(¼–ÇÒıÿÿÿÿ
+<squid:S1068"'Remove this unused "TAG" private field.(µÔ²º
+Fsquid:S1068",Remove this unused "docPaths" private field.(Ô–ğâûÿÿÿÿ
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.( À®Ç
+gsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‡–—ˆ
+[squid:UselessImportCheck"9Remove this unused import 'android.text.SpannableString'.(üÒş™
+Zsquid:UselessImportCheck"8Remove this unused import 'android.graphics.PorterDuff'.(•ÙÄ±
+fsquid:UselessImportCheck"?Remove this unused import 'android.graphics.drawable.Drawable'.(Á‰º„ùÿÿÿÿ
+Zsquid:UselessImportCheck"3Remove this unused import 'android.graphics.Color'.(øãíòşÿÿÿÿ
+_squid:UselessImportCheck">Remove this unused import 'android.support.v7.widget.Toolbar'.(à½£
+jsquid:UselessImportCheck"HRemove this unused import 'droidninja.filepicker.fragments.DocFragment'.(¬ˆ†æ
+esquid:UselessImportCheck"CRemove this unused import 'android.text.style.ForegroundColorSpan'.(¸±í
+dsquid:MaximumInheritanceDepth"=This class has 11 parents which is greater than 5 authorized.(·Ô˜

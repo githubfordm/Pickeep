@@ -1,0 +1,9 @@
+
+<squid:S1068"'Remove this unused "TAG" private field.(‚úÓ¹
+Fsquid:S1068",Remove this unused "fileType" private field.(ºœ¥¶üÿÿÿÿ
+qsquid:S1450"WRemove the "fileType" field and declare it as a local variable in the relevant methods.(ºœ¥¶üÿÿÿÿ
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ë­ÀÅ
+wsquid:S1845"]Rename field "tag" to prevent any misunderstanding/clash with field "TAG" defined on line 25.(‹Üƒûÿÿÿÿ
+Bsquid:S1185"(Remove this method to simply inherit it.(Ç™²“øÿÿÿÿ
+usquid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(‹Üƒûÿÿÿÿ
+Ssquid:S1155">Use isEmpty() to check whether the collection is empty or not.(ºË©´

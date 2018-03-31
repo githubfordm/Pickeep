@@ -1,0 +1,9 @@
+
+;squid:S1068"'Remove this unused "TAG" private field.(ÚüŸ3
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(úÃ²
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(úçµÙ
+wsquid:S1845"]Rename field "tag" to prevent any misunderstanding/clash with field "TAG" defined on line 36.(ŠõöŒüÿÿÿÿ
+›squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(©¢´¶úÿÿÿÿ
+nsquid:S00116"SRename this field "dir_path" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ş¸øÿÿÿÿ
+usquid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ŠõöŒüÿÿÿÿ
+xsquid:UselessImportCheck"VRemove this unused import 'droidninja.filepicker.fragments.MediaFolderPickerFragment'.(®ÖªÃ

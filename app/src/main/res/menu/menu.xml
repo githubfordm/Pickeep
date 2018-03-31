@@ -2,27 +2,27 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/Menu_Read"
-        android:title="Read_Mode"
+        android:title="보기 모드"
         android:orderInCategory="1"
         app:showAsAction="never"
         android:icon="@drawable/read"
         />
     <item android:id="@+id/Menu_Delete"
         android:orderInCategory="2"
-        android:title="Delete_Mode"
+        android:title="삭제 모드"
         app:showAsAction="never"
         android:icon="@drawable/delete"
         />
     <item android:id="@+id/Menu_Select"
         android:orderInCategory="3"
-        android:title="Add document"
+        android:title="파일 추가"
         app:showAsAction="never"
         android:icon="@drawable/main_plus"
         />
 
     <item android:id="@+id/Name"
         android:orderInCategory="4"
-        android:title="Sort By Name"
+        android:title="이름순으로 정렬"
         app:showAsAction="never"
         />
 </menu>

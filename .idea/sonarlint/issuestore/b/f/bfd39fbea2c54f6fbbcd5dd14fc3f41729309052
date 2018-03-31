@@ -1,0 +1,10 @@
+
+fsquid:UselessImportCheck"?Remove this unused import 'android.graphics.drawable.Drawable'.(Á‰º„ùÿÿÿÿ
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ÃòÑ£
+›squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ìÒî×ÿÿÿÿÿ
+isquid:MaximumInheritanceDepth"=This class has 11 parents which is greater than 5 authorized.(çí´ðùÿÿÿÿ
+Zsquid:UselessImportCheck"3Remove this unused import 'android.graphics.Color'.(øãíòþÿÿÿÿ
+…squid:S1319"pThe type of the "paths" object should be an interface such as "List" rather than the implementation "ArrayList".(óˆÍ¶
+_squid:UselessImportCheck">Remove this unused import 'android.support.v7.widget.Toolbar'.(à½£
+Zsquid:UselessImportCheck"8Remove this unused import 'android.graphics.PorterDuff'.(•ÙÄ±
+Xsquid:S1155">Use isEmpty() to check whether the collection is empty or not.(Šœ¾œøÿÿÿÿ

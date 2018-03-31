@@ -767,7 +767,7 @@ public class EnterActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     deleteFolder(bookPath[index]);
-                    Toast.makeText(getApplicationContext(), "index : " + index + "", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "폴더가 삭제되었습니다.", Toast.LENGTH_SHORT).show();
                     bookPath[index] = null;
                     deleteObject.setVisibility(View.INVISIBLE);
                     text_list[index].setText(""); // 폴더 삭제시 이름도 초기화

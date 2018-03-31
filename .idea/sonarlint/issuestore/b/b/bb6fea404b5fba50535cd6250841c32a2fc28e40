@@ -1,0 +1,17 @@
+
+S"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(Ì»¹üÿÿÿÿ
+Rsquid:S1068"8Remove this unused "MAX_ATTACHMENT_COUNT" private field.(¬Š–úÿÿÿÿ
+Hsquid:S1068".Remove this unused "photoPaths" private field.(²ü®‹şÿÿÿÿ
+qsquid:S1450"WRemove the "docPaths" field and declare it as a local variable in the relevant methods.(Ô–ğâûÿÿÿÿ
+esquid:S1301"KReplace this "switch" statement by "if" statements to increase readability.(Ì»¹üÿÿÿÿ
+–squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(€í¬ö
+zsquid:S00116"_Rename this field "MAX_ATTACHMENT_COUNT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬Š–úÿÿÿÿ
+osquid:UselessImportCheck"HRemove this unused import 'android.support.v7.widget.OrientationHelper'.(ÈÕàØıÿÿÿÿ
+fsquid:UselessImportCheck"DRemove this unused import 'droidninja.filepicker.FilePickerBuilder'.(·Ã“š
+Xsquid:UselessImportCheck"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ
+Ysquid:UselessImportCheck"2Remove this unused import 'android.widget.Button'.(²òıÿÿÿÿ
+Tsquid:UselessImportCheck"-Remove this unused import 'butterknife.Bind'.(Ê“„Îüÿÿÿÿ
+ssquid:UselessImportCheck"QRemove this unused import 'android.support.v7.widget.StaggeredGridLayoutManager'.(ø±ôÂ
+lsquid:UselessImportCheck"JRemove this unused import 'android.support.v7.widget.DefaultItemAnimator'.(ÿ”ÓÑ
+esquid:UselessImportCheck"CRemove this unused import 'android.support.v7.widget.RecyclerView'.(ÊŠáó
+gsquid:UselessImportCheck"@Remove this unused import 'android.support.annotation.Nullable'.(Ö‹øïüÿÿÿÿ

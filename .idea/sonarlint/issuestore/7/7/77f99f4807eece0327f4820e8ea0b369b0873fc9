@@ -1,0 +1,8 @@
+
+“squid:S1319"yThe type of the "selectedPhotos" object should be an interface such as "List" rather than the implementation "ArrayList".(è¦‚©ıÿÿÿÿ
+Isquid:S1172"/Remove this unused method parameter "maxCount".(Ê®Øıÿÿÿÿ
+Fsquid:S1172"1Remove this unused method parameter "pickerType".(åış
+Fsquid:S1172"1Remove this unused method parameter "pickerType".(«÷íä
+isquid:UselessImportCheck"BRemove this unused import 'droidninja.filepicker.models.FileType'.(¨ØÉ£üÿÿÿÿ
+esquid:UselessImportCheck"CRemove this unused import 'android.support.annotation.DrawableRes'.(âõ
+gsquid:UselessImportCheck"@Remove this unused import 'android.support.annotation.Nullable'.(Ö‹øïüÿÿÿÿ

@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" 정말 삭제할꺼야?"
+        android:text=" 정말 삭제하시겠습니까?"
         android:textSize="20dp"
         android:layout_gravity="center_horizontal"
         android:layout_margin="20dp"

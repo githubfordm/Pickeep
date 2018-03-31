@@ -1,0 +1,99 @@
+
+T
+squid:S899";Do something with the "boolean" value returned by "delete".(é‘‚©úÿÿÿÿ
+lsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(ÉÎÍïıÿÿÿÿ
+Rsquid:S1197"8Move the array designator from the variable to the type.(†Ğ’›üÿÿÿÿ
+S"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(ì¨ßÄüÿÿÿÿ
+esquid:S2095"PUse try-with-resources or close this "OutputStreamWriter" in a "finally" clause.(©†À½
+nsquid:S00116"XRename this field "create_layout" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ã¹
+jsquid:S00116"TRename this field "temp_text" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦µ»ê
+?squid:S1181"%Catch Exception instead of Throwable.(•”ø¾øÿÿÿÿ
+ssquid:S00116"XRename this field "get_select_rb" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰Øœºùÿÿÿÿ
+?squid:S1181"%Catch Exception instead of Throwable.(•”ø¾øÿÿÿÿ
+gsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ìà˜ë
+;squid:S1075"&Remove this hard-coded path-delimiter.(êåû‰
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+lsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‡·âïûÿÿÿÿ
+ssquid:S00116"XRename this field "delete_layout" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(áıü±ùÿÿÿÿ
+:squid:S1075"&Remove this hard-coded path-delimiter.(°üŞ+
+lsquid:S00116"VRename this field "button_list" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·…
+Esquid:S1481"+Remove this unused "result" local variable.(ïî±ùúÿÿÿÿ
+bsquid:HiddenFieldCheck"=Rename "viewGroup" which hides the field declared at line 52.(Ò¢¯Ùÿÿÿÿÿ
+?squid:S1181"%Catch Exception instead of Throwable.(•”ø¾øÿÿÿÿ
+squid:S00116"wRename this field "MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(û¾ÌÅ
+Vsquid:S1854"<Remove this useless assignment to local variable "filePath".(„òĞöüÿÿÿÿ
+^squid:S2583"DChange this condition so that it does not always evaluate to "false"(ñôË³úÿÿÿÿ
+Xsquid:S2583"CChange this condition so that it does not always evaluate to "true"(şšµ›
+qsquid:S1450"WRemove the "listener" field and declare it as a local variable in the relevant methods.(òÙåÂüÿÿÿÿ
+fsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(°üŞ+
+rsquid:S00116"\Rename this field "directory_pickeep" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•É¹©
+Rsquid:S1197"8Move the array designator from the variable to the type.(ùº‡şÿÿÿÿ
+S"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(Ò“ÿšùÿÿÿÿ
+Csquid:S1172".Remove this unused method parameter "context".(‚ˆï
+asquid:S1192"GDefine a constant instead of duplicating this literal "delete" 3 times.(ÕĞÄ‹ùÿÿÿÿ
+jsquid:S00116"TRename this field "select_ok" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ³Ã
+N
+squid:S899";Do something with the "boolean" value returned by "delete".(œğŠ
+Nsquid:S1854"9Remove this useless assignment to local variable "title".(üÃ²®
+isquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¥ñüÿÿÿÿ
+nsquid:S00116"XRename this field "default_photo" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(®õ¢ƒ
+Gsquid:S1068"-Remove this unused "viewGroup" private field.(™á‘€şÿÿÿÿ
+T
+squid:S899";Do something with the "boolean" value returned by "delete".(ïî±ùúÿÿÿÿ
+Dsquid:S00108")Either remove or fill this block of code.(•”ø¾øÿÿÿÿ
+dsquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(º„¥
+ssquid:S00116"XRename this field "select_cancel" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼áíîÿÿÿÿÿ
+?squid:S1481"*Remove this unused "title" local variable.(üÃ²®
+dsquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×³ç´
+^squid:HiddenFieldCheck"9Rename "index" which hides the field declared at line 76.(°è…§úÿÿÿÿ
+ksquid:S00116"URename this field "select_pic" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ãÚÉ
+lsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(§®ğáıÿÿÿÿ
+Tsquid:S1161":Add the "@Override" annotation above this method signature(ÉÎÍïıÿÿÿÿ
+dsquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹Ü©¸
+qsquid:S00116"VRename this field "select_book" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(û´Ñ”şÿÿÿÿ
+Dsquid:S00108")Either remove or fill this block of code.(•”ø¾øÿÿÿÿ
+@squid:S1075"&Remove this hard-coded path-delimiter.(ğ¨®£úÿÿÿÿ
+gsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–ı›
+nsquid:S00116"XRename this field "delete_window" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(üÅóŠ
+csquid:S4042"IUse "java.nio.Files#delete" here for better messages on error conditions.(ïî±ùúÿÿÿÿ
+psquid:S00116"URename this field "past_index" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£Èú°şÿÿÿÿ
+fsquid:UselessImportCheck"?Remove this unused import 'android.graphics.drawable.Drawable'.(Á‰º„ùÿÿÿÿ
+lsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(¥ñüÿÿÿÿ
+nsquid:S00116"XRename this field "select_layout" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ª…±¶
+fsquid:S2095"LUse try-with-resources or close this "BufferedReader" in a "finally" clause.(“úÅ¹úÿÿÿÿ
+ssquid:S00116"XRename this field "gallery_photo" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(İ”È‡øÿÿÿÿ
+Rsquid:S1197"8Move the array designator from the variable to the type.(­¥›±şÿÿÿÿ
+rsquid:S1450"XRemove the "folderAdd" field and declare it as a local variable in the relevant methods.(¢ŒÀäøÿÿÿÿ
+@squid:S1075"&Remove this hard-coded path-delimiter.(„òĞöüÿÿÿÿ
+ssquid:S00116"XRename this field "select_status" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»ñû‚øÿÿÿÿ
+gsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ã„‰¬
+Msquid:S1197"8Move the array designator from the variable to the type.(·…
+Rsquid:S1197"8Move the array designator from the variable to the type.(Í­í†şÿÿÿÿ
+ssquid:S00116"XRename this field "create_window" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÅÄĞÄúÿÿÿÿ
+msquid:UselessImportCheck"FRemove this unused import 'com.github.clans.fab.FloatingActionButton'.(¾Âöÿÿÿÿÿ
+lsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(è¹Ğñÿÿÿÿÿ
+psquid:S00116"URename this field "cancel_btn" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ğ»úÙıÿÿÿÿ
+S"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(ì¨ßÄüÿÿÿÿ
+ssquid:S00116"XRename this field "get_select_iv" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†Ğ’›üÿÿÿÿ
+esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(†ôüÿÿÿÿ
+lsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Í­í†şÿÿÿÿ
+isquid:MaximumInheritanceDepth"=This class has 11 parents which is greater than 5 authorized.(‡Ñ§ûÿÿÿÿ
+Tsquid:S1854":Remove this useless assignment to local variable "result".(ïî±ùúÿÿÿÿ
+Dsquid:S00108")Either remove or fill this block of code.(•”ø¾øÿÿÿÿ
+Rsquid:S1197"8Move the array designator from the variable to the type.(‰Øœºùÿÿÿÿ
+fsquid:UselessImportCheck"DRemove this unused import 'com.github.clans.fab.FloatingActionMenu'.(èÛ›®
+S"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(×ö³–úÿÿÿÿ
+]squid:S4042"IUse "java.nio.Files#delete" here for better messages on error conditions.(œğŠ
+_squid:S1192"JDefine a constant instead of duplicating this literal "/PicKeep/" 6 times.(÷‹»¡
+lsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(êÓœàşÿÿÿÿ
+isquid:S00116"SRename this field "rb_index" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„¹§ı
+asquid:S1192"GDefine a constant instead of duplicating this literal "index " 3 times.(ÕĞÄ‹ùÿÿÿÿ
+csquid:S4042"IUse "java.nio.Files#delete" here for better messages on error conditions.(é‘‚©úÿÿÿÿ
+nsquid:S00116"XRename this field "select_window" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Î´ÓÙ
+@squid:S1075"&Remove this hard-coded path-delimiter.(êÓœàşÿÿÿÿ
+dsquid:S1192"ODefine a constant instead of duplicating this literal "EnterActivity" 13 times.(·ç¬ï
+lsquid:S00116"QRename this field "ok_btn" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘ñşÿÿÿÿ
+ssquid:S00116"XRename this field "get_select_ll" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­¥›±şÿÿÿÿ
+lsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ïØë×şÿÿÿÿ
+osquid:S00116"TRename this field "text_list" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ùº‡şÿÿÿÿ
+psquid:S00116"ZRename this field "BACKGROUND_MODE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´çÄŞ

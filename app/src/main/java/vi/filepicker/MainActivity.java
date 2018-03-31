@@ -9,10 +9,14 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -46,11 +50,15 @@ public class MainActivity extends AppCompatActivity{
     String title;
     private static final String[] PERMISSION_ONPICKDOC = new String[] {"android.permission.WRITE_EXTERNAL_STORAGE"};
     ImageButton button;
+    EditText getSearch; // 검색어 찾기
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getSearch = (EditText)findViewById(R.id.ed_search);
+
         button = (ImageButton)findViewById(R.id.pick_doc);
         Intent temp = getIntent();
         if(temp != null) // 여기서 dir 변수 대입해주기.
@@ -70,6 +78,28 @@ public class MainActivity extends AppCompatActivity{
             else    // 권한 허락을 안한 경우
                finish();
         }
+
+
+        // 검색창 실행시 리스너 실행
+        getSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // input 창에 문자 입력할때마다 호출
+                String text = getSearch.getText().toString();
+               // searchText(text);
+            }
+        });
+
     }
 
     public void pickDocClicked(View view) {
@@ -145,12 +175,14 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
-    private void openSpecificFragment() {
+    public void openSpecificFragment() {
         if(PickerManager.getInstance().isFirst())
             PickerManager.getInstance().addDocTypes();
 
         photoFragment = DocMainFragment.newInstance(dir);      // 모든 각각의 Fragment를 담고있는 DocPickerFragment를 만들어서
         FragmentUtil.addFragment(this, R.id.container, photoFragment);          // 현재 빈 FrameLayout에 덮어씌운다.
+
+
     }
 
     @Override
@@ -184,6 +216,7 @@ public class MainActivity extends AppCompatActivity{
             {
                 Log.d("gege","sort in MainActivity");
                 photoFragment.sort("Name");
+                Toast.makeText(getApplicationContext(), "정렬이 완료되었습니다.", Toast.LENGTH_SHORT).show();
             }
         }
         else if(i == android.R.id.home)
@@ -291,4 +324,5 @@ public class MainActivity extends AppCompatActivity{
         } catch (Throwable e) { e.printStackTrace(); }
         return true;
     }
+
 }
